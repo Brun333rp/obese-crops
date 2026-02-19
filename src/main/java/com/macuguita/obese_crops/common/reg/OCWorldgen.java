@@ -22,6 +22,9 @@
 
 package com.macuguita.obese_crops.common.reg;
 
+import java.util.List;
+import java.util.OptionalInt;
+
 import com.macuguita.lib.reg.GuitaRegistries;
 import com.macuguita.lib.reg.GuitaRegistry;
 import com.macuguita.lib.reg.GuitaRegistryEntry;
@@ -30,6 +33,7 @@ import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
 import com.macuguita.obese_crops.common.tree.SingleObeseAppleTreeDecorator;
 import com.macuguita.obese_crops.common.tree.ThinTrunkPlacer;
+
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -59,9 +63,6 @@ import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
-
-import java.util.List;
-import java.util.OptionalInt;
 
 //? fabric {
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;

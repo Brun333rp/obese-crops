@@ -23,15 +23,17 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
+import java.util.concurrent.CompletableFuture;
+
 import com.macuguita.obese_crops.common.reg.OCBiomeTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.biome.Biome;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 
 public class OCBiomeTagProvider extends FabricTagProvider<Biome> {
 

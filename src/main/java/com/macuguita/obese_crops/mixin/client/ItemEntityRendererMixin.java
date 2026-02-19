@@ -24,14 +24,15 @@ package com.macuguita.obese_crops.mixin.client;
 
 import com.macuguita.obese_crops.client.ObeseCropsClient;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ItemEntityRenderer;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemDisplayContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.ItemEntityRenderer;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 
 @Mixin(ItemEntityRenderer.class)
 public class ItemEntityRendererMixin {

@@ -24,6 +24,7 @@ package com.macuguita.obese_crops.common.block;
 
 import com.macuguita.obese_crops.common.reg.OCBlockTags;
 import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;

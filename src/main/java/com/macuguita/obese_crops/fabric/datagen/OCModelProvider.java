@@ -23,29 +23,35 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
+import java.util.Arrays;
+import java.util.Optional;
+
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.ObeseCropBlock;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
 import com.macuguita.obese_crops.common.reg.OCObjects;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+
 import net.minecraft.core.Direction;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
-import net.minecraft.data.models.blockstates.*;
+import net.minecraft.data.models.blockstates.Condition;
+import net.minecraft.data.models.blockstates.MultiPartGenerator;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.data.models.model.ModelTemplate;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-import java.util.Arrays;
-import java.util.Optional;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 
 public class OCModelProvider extends FabricModelProvider {
 

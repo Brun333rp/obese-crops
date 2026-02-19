@@ -22,6 +22,10 @@
 
 package com.macuguita.obese_crops.common.resourcereloader;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
@@ -29,25 +33,19 @@ import com.macuguita.obese_crops.ObeseCrops;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-
 //? fabric {
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-//? }
+//? } else {
+/*import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+*///? }
 
 public class ObeseMapResourceReloadListener
 //? fabric

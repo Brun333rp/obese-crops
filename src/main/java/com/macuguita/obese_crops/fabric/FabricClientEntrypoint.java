@@ -3,6 +3,7 @@ package com.macuguita.obese_crops.fabric;
 //? fabric {
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.client.ObeseCropsClient;
+
 import net.fabricmc.api.ClientModInitializer;
 
 public class FabricClientEntrypoint implements ClientModInitializer {

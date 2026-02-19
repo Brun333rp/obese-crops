@@ -23,14 +23,16 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
+import java.util.concurrent.CompletableFuture;
+
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
 public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 

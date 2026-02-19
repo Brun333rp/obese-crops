@@ -25,10 +25,12 @@ package com.macuguita.obese_crops.fabric.datagen;
 //? fabric {
 import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
+
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 

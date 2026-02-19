@@ -22,9 +22,10 @@
 
 package com.macuguita.obese_crops.mixin;
 
-import net.minecraft.world.item.crafting.Ingredient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.world.item.crafting.Ingredient;
 
 @Mixin(Ingredient.class)
 public interface IngredientAccessor {

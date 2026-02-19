@@ -23,12 +23,14 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
+import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
+
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -37,8 +39,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Locale;
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 
 public class OCLangProvider extends FabricLanguageProvider {
 

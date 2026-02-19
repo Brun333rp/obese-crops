@@ -27,6 +27,8 @@ import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
 import com.macuguita.obese_crops.common.utils.OCUtils;
 import com.mojang.serialization.MapCodec;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -57,7 +59,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 public class ObeseCropBlock extends HorizontalDirectionalBlock implements BonemealableBlock {
 

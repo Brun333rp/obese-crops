@@ -22,6 +22,8 @@
 
 package com.macuguita.obese_crops.mixin;
 
+import java.util.Optional;
+
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -33,6 +35,12 @@ import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.reg.OCBlockTags;
 import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -42,13 +50,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-
-import java.util.Optional;
 
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {

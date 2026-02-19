@@ -1,15 +1,12 @@
 package com.macuguita.obese_crops.fabric;
 
 //? fabric {
-import com.macuguita.obese_crops.ObeseCrops;
+import java.nio.file.Path;
+import java.util.Objects;
+import java.util.function.Supplier;
+
 import com.macuguita.obese_crops.Platform;
-import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.loader.api.FabricLoader;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
@@ -18,9 +15,12 @@ import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
-import java.nio.file.Path;
-import java.util.Objects;
-import java.util.function.Supplier;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatformImpl implements Platform {
 

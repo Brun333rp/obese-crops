@@ -22,8 +22,14 @@
 
 package com.macuguita.obese_crops.common.block;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import com.macuguita.obese_crops.common.reg.OCBlockTags;
-import com.macuguita.obese_crops.common.reg.OCItemTags;import com.mojang.serialization.MapCodec;
+import com.macuguita.obese_crops.common.reg.OCItemTags;
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -52,10 +58,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 public class ThinLogBlock extends PipeBlock {
 

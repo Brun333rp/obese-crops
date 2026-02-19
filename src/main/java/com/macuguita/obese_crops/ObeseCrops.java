@@ -1,20 +1,26 @@
 package com.macuguita.obese_crops;
 
+import java.util.Map;
+import java.util.Optional;
+
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
-import com.macuguita.obese_crops.common.reg.*;
+import com.macuguita.obese_crops.common.reg.OCComponents;
+import com.macuguita.obese_crops.common.reg.OCCreativeTabs;
+import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
+import com.macuguita.obese_crops.common.reg.OCEnchantments;
+import com.macuguita.obese_crops.common.reg.OCObjects;
+import com.macuguita.obese_crops.common.reg.OCWorldgen;
 import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
 import com.macuguita.obese_crops.common.resourcereloader.Source;
 import folk.sisby.kaleido.api.WrappedConfig;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-import java.util.Optional;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class ObeseCrops {
 

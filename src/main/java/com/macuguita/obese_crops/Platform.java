@@ -5,11 +5,13 @@ import com.macuguita.obese_crops.fabric.FabricPlatformImpl;
 //? }
 //? neoforge {
 /*import com.macuguita.obese_crops.neoforge.NeoForgePlatformImpl;
-*///? }
-import com.macuguita.obese_crops.mixin.FireBlockAccessor;
+ *///? }
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import com.macuguita.obese_crops.mixin.FireBlockAccessor;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
