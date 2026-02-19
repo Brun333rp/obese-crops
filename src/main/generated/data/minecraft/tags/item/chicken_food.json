@@ -1,5 +1,8 @@
 {
   "values": [
-    "obese_crops:apple_seed"
+    {
+      "id": "#obese_crops:apple_seed",
+      "required": false
+    }
   ]
 }

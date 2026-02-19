@@ -73,6 +73,9 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 				.addTag(OCItemTags.SCYTHES.location())
 				.addOptionalTag(ItemTags.SWORDS.location())
 				.addOptionalTag(ItemTags.AXES.location());
+
+		getOrCreateRawBuilder(ItemTags.CHICKEN_FOOD)
+				.addOptionalTag(OCObjects.APPLE_SEED.getId());
 	}
 }
 //? }
