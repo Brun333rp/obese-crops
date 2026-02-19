@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "obese_crops:block/flowering_oak_leaves",
+        "weight": 2
+      },
+      {
+        "model": "obese_crops:block/flowering_oak_leaves_flowers"
+      }
+    ]
+  }
+}

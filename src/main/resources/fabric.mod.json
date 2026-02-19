@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "obese_crops",
+  "name": "Obese crops",
+  "version": "${version}",
+  "authors": ["macuguita"],
+  "contact": {
+    "sources": "",
+    "issues": ""
+  },
+  "description": "Bigger crops, that bring a bountiful harvest!",
+  "icon": "assets/icon.png",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.macuguita.obese_crops.fabric.FabricEntrypoint"
+    ],
+    "client": [
+      "com.macuguita.obese_crops.fabric.FabricClientEntrypoint"
+    ],
+    "fabric-datagen": [
+      "com.macuguita.obese_crops.fabric.datagen.FabricDatagenEntrypoint"
+    ]
+  },
+  "mixins": [
+    "obese_crops.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*"
+  }
+}

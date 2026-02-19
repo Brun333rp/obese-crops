@@ -1,0 +1,15 @@
+{
+  "primary": {
+    "obese": "obese_crops:obese_potato",
+    "foliage": "obese_crops:obese_potato_foliage",
+    "drop": "minecraft:potato"
+  },
+  "secondaries": [
+    {
+      "obese": "obese_crops:obese_poisonous_potato",
+      "foliage": "obese_crops:obese_potato_foliage",
+      "drop": "minecraft:poisonous_potato",
+      "chance": 50
+    }
+  ]
+}

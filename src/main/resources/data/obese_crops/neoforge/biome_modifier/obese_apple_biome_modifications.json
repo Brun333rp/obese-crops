@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#obese_crops:flowering_oak_tree",
+  "features": "obese_crops:flowering_oaks",
+  "step": "vegetal_decoration"
+}

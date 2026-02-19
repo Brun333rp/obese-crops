@@ -1,0 +1,7 @@
+{
+  "primary": {
+    "obese": "obese_crops:obese_beetroot",
+    "foliage": "obese_crops:obese_beetroot_foliage",
+    "drop": "minecraft:beetroot"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "package": "com.macuguita.obese_crops.mixin",
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "${javaVersion}",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
+  "mixins": [
+    "BlockLootSubProviderAccessor",
+    "CropBlockMixin",
+    "FireBlockAccessor",
+    "HoeItemAccessor",
+    "IngredientAccessor",
+    "PlayerMixin"
+  ],
+  "client": [
+    "client.GuiGraphicsMixin",
+    "client.ItemEntityRendererMixin",
+    "client.ItemRendererMixin"
+  ]
+}
