@@ -163,6 +163,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("macu-lib")
         optional("mcqoy")
+        optional("qomc")
     }
 
     curseforge {

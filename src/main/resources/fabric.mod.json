@@ -27,6 +27,7 @@
     "obese_crops.mixins.json"
   ],
   "depends": {
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "macu_lib": "~2."
   }
 }

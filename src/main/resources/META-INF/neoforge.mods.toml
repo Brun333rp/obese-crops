@@ -25,3 +25,8 @@ side = "BOTH"
 modId = "minecraft"
 type = "required"
 versionRange = "${minecraft}"
+
+[[dependencies.obese_crops]]
+modId = "macu_lib"
+type = "required"
+versionRange = "[2.0.0, ]"

@@ -180,6 +180,7 @@ publishMods {
         requires("macu-lib")
         optional("modmenu")
         optional("mcqoy")
+        optional("qomc")
     }
 
     curseforge {
