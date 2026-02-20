@@ -83,11 +83,11 @@ public abstract class CocoaBlockMixin extends HorizontalDirectionalBlock {
 			int primaryChance = obeseBlockData.get().primary().chance();
 
 			if (random.nextInt(primaryChance) == 0) {
-				blockState = obese_crops$pickObeseBlock(obeseBlockData.get(), random).defaultBlockState();
+				blockState = obese_crops$pickObeseBlock(obeseBlockData.get(), random).defaultBlockState().setValue(ObeseCropBlock.FACING, facing.getOpposite());
 			}
 		}
 
-		return blockState.setValue(ObeseCropBlock.FACING, facing.getOpposite());
+		return blockState;
 	}
 
 	@Definition(id = "level", local = @Local(type = ServerLevel.class, argsOnly = true))
@@ -111,11 +111,11 @@ public abstract class CocoaBlockMixin extends HorizontalDirectionalBlock {
 			int primaryChance = obeseBlockData.get().primary().chance();
 
 			if (random.nextInt(primaryChance) == 0) {
-				blockState = obese_crops$pickObeseBlock(obeseBlockData.get(), random).defaultBlockState();
+				blockState = obese_crops$pickObeseBlock(obeseBlockData.get(), random).defaultBlockState().setValue(ObeseCropBlock.FACING, facing.getOpposite());
 			}
 		}
 
-		return blockState.setValue(ObeseCropBlock.FACING, facing.getOpposite());
+		return blockState;
 	}
 
 	@Unique

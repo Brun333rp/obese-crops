@@ -1,7 +1,1 @@
-- Added Spanish translations
-- Added obese cocoa
-- Added obese golden carrots
-- Added obese golden apples
-- Chickens can now eat apple seeds
-- Apples can now grow into obese apples
-- Fixed foliage not breaking when the block has been chopped
+- Fixed vanilla cocoa beans not growing correctly due to a mixin
