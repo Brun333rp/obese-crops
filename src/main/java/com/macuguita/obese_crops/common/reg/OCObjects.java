@@ -69,10 +69,14 @@ public final class OCObjects {
 	public static final GuitaRegistryEntry<Block> OBESE_CARROT = registerObeseCrop("obese_carrot", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE));
 	public static final GuitaRegistryEntry<Block> OBESE_POISONOUS_POTATO = registerObeseCrop("obese_poisonous_potato", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN));
 	public static final GuitaRegistryEntry<Block> OBESE_POTATO = registerObeseCrop("obese_potato", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW));
+	public static final GuitaRegistryEntry<Block> OBESE_COCOA = registerObeseCrop("obese_cocoa", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN));
+	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT = registerObeseCrop("obese_golden_carrot", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW));
+	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_APPLE = registerObeseCrop("obese_golden_apple", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW));
 
 	public static final GuitaRegistryEntry<Block> OBESE_BEETROOT_FOLIAGE = registerFoliage("obese_beetroot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
 	public static final GuitaRegistryEntry<Block> OBESE_CARROT_FOLIAGE = registerFoliage("obese_carrot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
 	public static final GuitaRegistryEntry<Block> OBESE_POTATO_FOLIAGE = registerFoliage("obese_potato_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
+	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT_FOLIAGE = registerFoliage("obese_golden_carrot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
 
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LOG = registerWithItem("flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor()), true));
 	public static final GuitaRegistryEntry<Block> STRIPPED_FLOWERING_OAK_LOG = registerWithItem("stripped_flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor())));

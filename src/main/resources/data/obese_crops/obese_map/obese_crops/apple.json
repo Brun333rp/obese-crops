@@ -1,6 +1,7 @@
 {
   "primary": {
     "obese": "obese_crops:obese_apple",
-    "drop": "minecraft:apple"
+    "drop": "minecraft:apple",
+    "chance": 50
   }
 }

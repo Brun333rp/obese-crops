@@ -1,0 +1,7 @@
+{
+  "primary": {
+    "obese": "obese_crops:obese_golden_apple",
+    "foliage": "obese_crops:obese_golden_apple_foliage",
+    "drop": "minecraft:golden_apple"
+  }
+}

@@ -50,9 +50,13 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addElement(OCObjects.OBESE_BEETROOT.getId())
 				.addElement(OCObjects.OBESE_CARROT.getId())
 				.addElement(OCObjects.OBESE_POISONOUS_POTATO.getId())
-				.addElement(OCObjects.OBESE_POTATO.getId());
+				.addElement(OCObjects.OBESE_POTATO.getId())
+				.addElement(OCObjects.OBESE_COCOA.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_CARROT.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_APPLE.getId());
 		getOrCreateRawBuilder(OCBlockTags.DOUBLE_OBESE_CROP)
-				.addElement(OCObjects.OBESE_CARROT.getId());
+				.addElement(OCObjects.OBESE_CARROT.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_CARROT.getId());
 
 		getOrCreateRawBuilder(OCBlockTags.SCYTHE_MINABLE)
 				.addElement(OCObjects.OBESE_APPLE.getId())
@@ -60,13 +64,19 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addElement(OCObjects.OBESE_CARROT.getId())
 				.addElement(OCObjects.OBESE_POISONOUS_POTATO.getId())
 				.addElement(OCObjects.OBESE_POTATO.getId())
+				.addElement(OCObjects.OBESE_COCOA.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_CARROT.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_APPLE.getId())
 				.addOptionalTag(BlockTags.MINEABLE_WITH_HOE.location());
 		getOrCreateRawBuilder(OCBlockTags.SCYTHE_EFFICIENT)
 				.addElement(OCObjects.OBESE_APPLE.getId())
 				.addElement(OCObjects.OBESE_BEETROOT.getId())
 				.addElement(OCObjects.OBESE_CARROT.getId())
 				.addElement(OCObjects.OBESE_POISONOUS_POTATO.getId())
-				.addElement(OCObjects.OBESE_POTATO.getId());
+				.addElement(OCObjects.OBESE_POTATO.getId())
+				.addElement(OCObjects.OBESE_COCOA.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_CARROT.getId())
+				.addElement(OCObjects.OBESE_GOLDEN_APPLE.getId());
 		getOrCreateRawBuilder(OCBlockTags.SCYTHE_WEEDS)
 				.addOptionalTag(BlockTags.FLOWERS.location())
 				.addElement(getRes(Blocks.SHORT_GRASS))

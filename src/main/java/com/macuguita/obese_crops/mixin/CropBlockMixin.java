@@ -51,6 +51,14 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**
+ * This mixin is intentionally complex because it must replace the crop with the obese block
+ * at exactly the right moment. If the replacement happens too early or too late, this mixin
+ * can break the farmland, causing the original crop to drop as an item while the obese block
+ * is still being placed — effectively duplicating resources.
+ * <p>
+ * The current implementation ensures that sequence is handled safely to prevent duplication.
+ */
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
 

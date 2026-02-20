@@ -55,6 +55,9 @@ public class OCLangProvider extends FabricLanguageProvider {
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_CARROT.get());
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_POISONOUS_POTATO.get());
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_POTATO.get());
+		generateBlockTranslations(translationBuilder, OCObjects.OBESE_COCOA.get());
+		generateBlockTranslations(translationBuilder, OCObjects.OBESE_GOLDEN_CARROT.get());
+		generateBlockTranslations(translationBuilder, OCObjects.OBESE_GOLDEN_APPLE.get());
 
 		generateBlockTranslations(translationBuilder, OCObjects.FLOWERING_OAK_LOG.get());
 		generateBlockTranslations(translationBuilder, OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());

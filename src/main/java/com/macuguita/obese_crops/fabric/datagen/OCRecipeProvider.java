@@ -23,6 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
+
 import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.item.ScytheItem;
@@ -77,6 +78,29 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_CARROT.get(), Items.CARROT);
 		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_POISONOUS_POTATO.get(), Items.POISONOUS_POTATO);
 		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_POTATO.get(), Items.POTATO);
+		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_COCOA.get(), Items.COCOA_BEANS);
+		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_GOLDEN_CARROT.get(), Items.GOLDEN_CARROT);
+		generateObeseBlockDeconstruction(recipeOutput, OCObjects.OBESE_GOLDEN_APPLE.get(), Items.GOLDEN_APPLE);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, OCObjects.OBESE_GOLDEN_CARROT.get())
+				.pattern("###")
+				.pattern("#|#")
+				.pattern("###")
+				.define('#', Items.GOLD_INGOT)
+				.define('|', OCObjects.OBESE_CARROT.get())
+				.unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+				.unlockedBy(getHasName(OCObjects.OBESE_CARROT.get()), has(OCObjects.OBESE_CARROT.get()))
+				.save(recipeOutput);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, OCObjects.OBESE_GOLDEN_APPLE.get())
+				.pattern("###")
+				.pattern("#|#")
+				.pattern("###")
+				.define('#', Items.GOLD_BLOCK)
+				.define('|', OCObjects.OBESE_APPLE.get())
+				.unlockedBy(getHasName(Items.GOLD_BLOCK), has(Items.GOLD_BLOCK))
+				.unlockedBy(getHasName(OCObjects.OBESE_APPLE.get()), has(OCObjects.OBESE_APPLE.get()))
+				.save(recipeOutput);
 
 		planksFromLog(recipeOutput, Blocks.OAK_PLANKS, OCItemTags.FLOWERING_OAK_LOGS, 4);
 	}

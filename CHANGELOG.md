@@ -1,6 +1,12 @@
 1.0.2
-- Added spanish translations
+- Added Spanish translations
+- Added obese cocoa
+- Added obese golden carrots
+- Added obese golden apples
 - Chickens can now eat apple seeds
+- Apples can now grow into obese apples
+- Fixed foliage not breaking when the block has been chopped
+
 ---
 1.0.1
 - Added flowering oak trees

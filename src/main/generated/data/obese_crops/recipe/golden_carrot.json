@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "obese_crop",
+  "ingredients": [
+    {
+      "item": "obese_crops:obese_golden_carrot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraft:golden_carrot"
+  }
+}

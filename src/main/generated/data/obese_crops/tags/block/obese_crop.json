@@ -3,6 +3,9 @@
     "obese_crops:obese_beetroot",
     "obese_crops:obese_carrot",
     "obese_crops:obese_poisonous_potato",
-    "obese_crops:obese_potato"
+    "obese_crops:obese_potato",
+    "obese_crops:obese_cocoa",
+    "obese_crops:obese_golden_carrot",
+    "obese_crops:obese_golden_apple"
   ]
 }

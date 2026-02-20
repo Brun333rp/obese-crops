@@ -60,7 +60,10 @@ public class ObeseCropFoliageBlock extends BushBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return state.isFaceSturdy(level, pos, Direction.UP) && state.is(BlockTags.DIRT) || state.is(Blocks.FARMLAND) || state.is(OCBlockTags.OBESE_CROP);
+		return state.isFaceSturdy(level, pos, Direction.UP)
+				&& (state.is(BlockTags.DIRT)
+				|| state.is(Blocks.FARMLAND)
+				|| state.is(OCBlockTags.OBESE_CROP));
 	}
 
 	@Override

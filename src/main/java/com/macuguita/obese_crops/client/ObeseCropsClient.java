@@ -50,6 +50,7 @@ public class ObeseCropsClient {
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_BEETROOT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_CARROT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_POTATO_FOLIAGE.get());
+        Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_GOLDEN_CARROT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.APPLE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.FLOWERING_OAK_LEAVES.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.FLOWERING_OAK_SAPLING.get());

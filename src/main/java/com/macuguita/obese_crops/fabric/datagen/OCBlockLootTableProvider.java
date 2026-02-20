@@ -60,6 +60,9 @@ public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 		add(OCObjects.OBESE_CARROT.get(), block -> createObeseBlockDrop(block, Items.CARROT));
 		add(OCObjects.OBESE_POISONOUS_POTATO.get(), block -> createObeseBlockDrop(block, Items.POISONOUS_POTATO));
 		add(OCObjects.OBESE_POTATO.get(), block -> createObeseBlockDrop(block, Items.POTATO));
+		add(OCObjects.OBESE_COCOA.get(), block -> createObeseBlockDrop(block, Items.COCOA_BEANS));
+		add(OCObjects.OBESE_GOLDEN_CARROT.get(), block -> createObeseBlockDrop(block, Items.GOLDEN_CARROT));
+		add(OCObjects.OBESE_GOLDEN_APPLE.get(), block -> createObeseBlockDrop(block, Items.GOLDEN_APPLE));
 
 		dropSelf(OCObjects.FLOWERING_OAK_LOG.get());
 		dropSelf(OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());

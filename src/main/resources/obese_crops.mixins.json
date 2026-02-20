@@ -11,6 +11,7 @@
   },
   "mixins": [
     "BlockLootSubProviderAccessor",
+    "CocoaBlockMixin",
     "CropBlockMixin",
     "FireBlockAccessor",
     "HoeItemAccessor",

@@ -1,0 +1,7 @@
+{
+  "primary": {
+    "obese": "obese_crops:obese_cocoa",
+    "drop": "minecraft:cocoa_beans",
+    "chance": 50
+  }
+}

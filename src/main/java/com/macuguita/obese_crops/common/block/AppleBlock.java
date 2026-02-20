@@ -22,7 +22,11 @@
 
 package com.macuguita.obese_crops.common.block;
 
+import java.util.Optional;
+
+import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.reg.OCBlockTags;
+import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -65,15 +69,26 @@ public class AppleBlock extends Block implements BonemealableBlock {
 
 	@Override
 	protected boolean isRandomlyTicking(BlockState state) {
-		return state.getValue(AGE) < 2;
+		return state.getValue(AGE) < MAX_AGE;
 	}
 
 	@Override
 	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		if (level.random.nextInt(5) == 0) {
+		if (random.nextInt(5) == 0) {
 			int i = state.getValue(AGE);
-			if (i < 2) {
-				level.setBlock(pos, state.setValue(AGE, i + 1), 2);
+			if (i < MAX_AGE) {
+				Optional<ObeseMapResourceReloadListener.ObeseBlockData> obeseBlockData =
+						ObeseCrops.getObeseBlockData(state.getBlock());
+
+				if (obeseBlockData.isPresent() && i == MAX_AGE - 1) {
+					int primaryChance = obeseBlockData.get().primary().chance();
+
+					if (random.nextInt(primaryChance) == 0) {
+						level.setBlock(pos, pickObeseBlock(obeseBlockData.get(), random).defaultBlockState(), Block.UPDATE_ALL);
+						return;
+					}
+				}
+				level.setBlock(pos, state.setValue(AGE, i + 1), Block.UPDATE_ALL);
 			}
 		}
 	}
@@ -93,7 +108,7 @@ public class AppleBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-		return state.getValue(AGE) < 2;
+		return state.getValue(AGE) < MAX_AGE;
 	}
 
 	@Override
@@ -103,7 +118,19 @@ public class AppleBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-		level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 2);
+		Optional<ObeseMapResourceReloadListener.ObeseBlockData> obeseBlockData =
+				ObeseCrops.getObeseBlockData(state.getBlock());
+
+		if (obeseBlockData.isPresent() && state.getValue(AGE) == MAX_AGE - 1) {
+			int primaryChance = obeseBlockData.get().primary().chance();
+
+			if (random.nextInt(primaryChance) == 0) {
+				level.setBlock(pos, pickObeseBlock(obeseBlockData.get(), random).defaultBlockState(), Block.UPDATE_ALL);
+				return;
+			}
+		}
+
+		level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), Block.UPDATE_ALL);
 	}
 
 	@Override
@@ -114,7 +141,7 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (state.getValue(AGE) == MAX_AGE) {
-			level.setBlock(pos, state.setValue(AGE, 0), 2);
+			level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_ALL);
 			Block.popResourceFromFace(level, pos, Direction.DOWN, new ItemStack(Items.APPLE, 1));
 			return InteractionResult.SUCCESS;
 		}
@@ -129,5 +156,15 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return VOXEL_SHAPE[state.getValue(AGE)];
+	}
+
+	private Block pickObeseBlock(ObeseMapResourceReloadListener.ObeseBlockData data, RandomSource random) {
+		for (var secondary : data.secondaries()) {
+			if (random.nextInt(secondary.chance()) == 0) {
+				return secondary.obese();
+			}
+		}
+
+		return data.primary().obese();
 	}
 }

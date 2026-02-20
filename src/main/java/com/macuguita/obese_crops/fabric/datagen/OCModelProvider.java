@@ -66,10 +66,14 @@ public class OCModelProvider extends FabricModelProvider {
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_POTATO.get());
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_APPLE.get(), true);
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_CARROT.get(), true);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_COCOA.get());
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_CARROT.get(), true);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_APPLE.get(), true);
 
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_BEETROOT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_CARROT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_POTATO_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
+		blockModelGenerators.createCrossBlock(OCObjects.OBESE_GOLDEN_CARROT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 
 		createThinLogBlock(blockModelGenerators, OCObjects.FLOWERING_OAK_LOG.get());
 		createThinLogBlock(blockModelGenerators, OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());
@@ -208,7 +212,7 @@ public class OCModelProvider extends FabricModelProvider {
 				.accept(MultiVariantGenerator.multiVariant(floweringLeaves,
 						Variant.variant().with(VariantProperties.MODEL, modelNoFlowers).with(VariantProperties.WEIGHT, 2),
 						Variant.variant().with(VariantProperties.MODEL, modelFlowers)));
-		blockModelGenerators.delegateItemModel(floweringLeaves, modelNoFlowers);
+		blockModelGenerators.delegateItemModel(floweringLeaves, modelFlowers);
 	}
 
 	private void createFruitBlock(BlockModelGenerators blockModelGenerators, Block fruit) {
