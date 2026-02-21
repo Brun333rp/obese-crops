@@ -28,6 +28,6 @@
   ],
   "depends": {
     "fabric-api": "*",
-    "macu_lib": "~2."
+    "macu_lib": "~2.0.0"
   }
 }
