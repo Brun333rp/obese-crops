@@ -1,1 +1,4 @@
-- Fixed vanilla cocoa beans not growing correctly due to a mixin
+- Added french [#4](https://github.com/macuguita/obese-crops/pull/4)
+- Added andalûh
+- Fixed some fabric.mod.json and neoforge.mods.toml dependency stuff
+- Fixed neoforge not having accesstransformers apply… oops!

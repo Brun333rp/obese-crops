@@ -1,12 +1,18 @@
+1.0.3
+- Added french [#4](https://github.com/macuguita/obese-crops/pull/4)
+- Added andalûh
+- Fixed some fabric.mod.json and neoforge.mods.toml dependency stuff
+- Fixed neoforge not having accesstransformers apply… oops!
+---
 1.0.2a
 - Fixed vanilla cocoa beans not growing correctly due to a mixin
 ---
 1.0.2
-- Added Spanish translations
+- Added Spanish translations [#2](https://github.com/macuguita/obese-crops/pull/2)
 - Added obese cocoa
 - Added obese golden carrots
 - Added obese golden apples
-- Chickens can now eat apple seeds
+- Chickens can now eat apple seeds [#3](https://github.com/macuguita/obese-crops/pull/3)
 - Apples can now grow into obese apples
 - Fixed foliage not breaking when the block has been chopped
 ---
