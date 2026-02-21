@@ -191,6 +191,8 @@ publishMods {
         requires("fabric-api")
         requires("macu-lib")
         optional("modmenu")
+        optional("mcqoy")
+        optional("qomc")
     }
 }
 

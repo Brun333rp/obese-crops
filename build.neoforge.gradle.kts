@@ -172,6 +172,8 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("macu-lib")
+        optional("mcqoy")
+        optional("qomc")
     }
 }
 
