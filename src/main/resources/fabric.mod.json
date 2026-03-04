@@ -5,8 +5,8 @@
   "version": "${version}",
   "authors": ["macuguita"],
   "contact": {
-    "sources": "",
-    "issues": ""
+    "sources": "https://github.com/macuguita/obese-crops",
+    "issues": "https://github.com/macuguita/obese-crops/issues"
   },
   "description": "Bigger crops, that bring a bountiful harvest!",
   "icon": "assets/icon.png",
