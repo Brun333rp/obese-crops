@@ -20,13 +20,12 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.neoforge;
+package com.macuguita.obese_crops.forge;
 
-//? neoforge {
+//? forge {
 /*import com.google.common.collect.Lists;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.Platform;
-import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.client.Minecraft;
@@ -37,16 +36,19 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
-import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.javafmlmod.FMLModContainer;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.nio.file.Path;
@@ -56,7 +58,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class NeoForgePlatformImpl implements Platform {
+public class ForgePlatformImpl implements Platform {
     private static final List<Pair<ItemColor, Supplier<? extends ItemLike>[]>> ITEM_COLORS = Lists.newArrayList();
     private static final List<Pair<BlockColor, Supplier<? extends Block>[]>> BLOCK_COLORS = Lists.newArrayList();
     private static final Object2IntMap<ItemLike> FUEL_ITEMS = new Object2IntLinkedOpenHashMap<>();
@@ -66,7 +68,7 @@ public class NeoForgePlatformImpl implements Platform {
         whenAvailable(ObeseCrops.MOD_ID, bus -> {
             bus.register(ModBusEvents.class);
         });
-        NeoForge.EVENT_BUS.register(ForgeBusEvents.class);
+        MinecraftForge.EVENT_BUS.register(ForgeBusEvents.class);
     }
 
     public static final class ModBusEvents {
@@ -113,7 +115,7 @@ public class NeoForgePlatformImpl implements Platform {
 
     @Override
     public String loader() {
-        return "neoforge";
+        return "forge";
     }
 
     @Override
@@ -123,14 +125,11 @@ public class NeoForgePlatformImpl implements Platform {
 
     @Override
     public boolean isDevelopment() {
-        //? if >= 1.21.11 {
-        /^return !FMLEnvironment.isProduction();
-        ^///?} else {
 		return !FMLEnvironment.production;
-		 //?}
     }
 
-    @Override
+    @SuppressWarnings("removal")
+	@Override
     public void registerRenderType(RenderType renderType, Block... blocks) {
         for (Block block : blocks) {
             ItemBlockRenderTypes.setRenderLayer(block, renderType);
@@ -192,7 +191,13 @@ public class NeoForgePlatformImpl implements Platform {
 
     public static Optional<IEventBus> getModEventBus(String modId) {
         return ModList.get().getModContainerById(modId)
-                .map(ModContainer::getEventBus);
+                .map(modContainer -> {
+					if (modContainer instanceof FMLModContainer fmlModContainer)
+						return fmlModContainer.getEventBus();
+					else {
+						return null;
+					}
+				});
     }
 }
 *///?}

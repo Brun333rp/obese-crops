@@ -20,32 +20,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.fabric.datagen;
+@NullMarked
+package com.macuguita.obese_crops.forge;
 
-//? fabric {
-import java.util.concurrent.CompletableFuture;
-
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-
-public class OCWorldProvider extends FabricDynamicRegistryProvider {
-
-	public OCWorldProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-		super(output, registriesFuture);
-	}
-
-	@Override
-	protected void configure(HolderLookup.Provider wrapperLookup, Entries entries) {
-		entries.addAll(wrapperLookup.lookupOrThrow(Registries.PLACED_FEATURE));
-		entries.addAll(wrapperLookup.lookupOrThrow(Registries.CONFIGURED_FEATURE));
-	}
-
-	@Override
-	public String getName() {
-		return "Obese Crops Worldgen Provider";
-	}
-}
-//? }
+import org.jspecify.annotations.NullMarked;

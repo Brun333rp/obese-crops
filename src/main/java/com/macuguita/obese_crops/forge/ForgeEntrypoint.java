@@ -20,32 +20,37 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.fabric.datagen;
+package com.macuguita.obese_crops.forge;
 
-//? fabric {
-import java.util.concurrent.CompletableFuture;
+//? forge {
+/*import com.macuguita.obese_crops.ObeseCrops;
+import com.macuguita.obese_crops.client.ObeseCropsClient;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
+@Mod(ObeseCrops.MOD_ID)
+public class ForgeEntrypoint {
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-
-public class OCWorldProvider extends FabricDynamicRegistryProvider {
-
-	public OCWorldProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-		super(output, registriesFuture);
+	public ForgeEntrypoint(IEventBus modEventBus) {
+		ObeseCrops.init();
+		modEventBus.addListener(this::commonSetup);
 	}
 
-	@Override
-	protected void configure(HolderLookup.Provider wrapperLookup, Entries entries) {
-		entries.addAll(wrapperLookup.lookupOrThrow(Registries.PLACED_FEATURE));
-		entries.addAll(wrapperLookup.lookupOrThrow(Registries.CONFIGURED_FEATURE));
+	@Mod.EventBusSubscriber(modid = ObeseCrops.MOD_ID, value = Dist.CLIENT)
+	public static class ClientEvents {
+		@SubscribeEvent
+		public static void onClientSetup(final FMLClientSetupEvent event) {
+			ObeseCrops.LOGGER.info("Initializing {} Client", ObeseCrops.MOD_ID);
+			ObeseCropsClient.init();
+		}
 	}
 
-	@Override
-	public String getName() {
-		return "Obese Crops Worldgen Provider";
+	private void commonSetup(final FMLCommonSetupEvent event) {
+		ObeseCrops.commonInit();
 	}
 }
-//? }
+*///?}

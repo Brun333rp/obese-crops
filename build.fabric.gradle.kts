@@ -16,10 +16,10 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
-        this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
+        this["macu_libVersion"] = prop("deps.macu_lib")
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml", "${prop("mod.id")}.mixins.json")) {
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
         expand(props)
     }
 
@@ -89,8 +89,17 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
     compileOnly("org.jspecify:jspecify:1.0.0")
 
-    modImplementation("com.macuguita:macu_lib-fabric:${property("deps.macu_lib")}+${property("deps.minecraft")}") {
-        exclude(group = "net.fabricmc.fabric-api")
+    if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
+        modImplementation("com.macuguita:macu_lib-fabric:${property("deps.macu_lib")}+${property("deps.minecraft")}") {
+            exclude(group = "net.fabricmc.fabric-api")
+        }
+    } else {
+        modImplementation("maven.modrinth:macu-lib:1.0.6-${property("deps.minecraft")}-fabric") {
+            exclude(group = "net.fabricmc.fabric-api")
+        }
+
+        implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+        include("folk.sisby:kaleido-config:${property("deps.kaleido")}")
     }
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
@@ -116,6 +125,10 @@ stonecutter {
     replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")
+    }
+    replacements.string {
+        direction = eval(current.version, ">1.21")
+        replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
     }
 }
 

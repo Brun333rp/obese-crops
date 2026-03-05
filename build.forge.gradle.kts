@@ -1,5 +1,5 @@
 plugins {
-    id("net.neoforged.moddev")
+    id("net.neoforged.moddev.legacyforge")
     id ("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
     id("maven-publish")
@@ -20,7 +20,7 @@ tasks.named<ProcessResources>("processResources") {
 
 }
 
-version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
+version = "${property("mod.version")}+${property("deps.minecraft")}-forge"
 base.archivesName = property("mod.id") as String
 
 jsonlang {
@@ -73,8 +73,8 @@ configurations {
     }
 }
 
-neoForge {
-    version = property("deps.neoforge") as String
+legacyForge {
+    version = property("deps.forge_loader") as String
     validateAccessTransformers = true
 
     if (hasProperty("deps.parchment")) parchment {
@@ -104,7 +104,12 @@ neoForge {
 
 dependencies {
     // McQoy
-    implementation("com.macuguita:macu_lib-neoforge:${property("deps.macu_lib")}+${property("deps.minecraft")}")
+    implementation("maven.modrinth:macu-lib:1.0.6-${property("deps.minecraft")}-forge")
+    implementation("io.github.llamalad7:mixinextras-forge:0.5.3")
+    jarJar("io.github.llamalad7:mixinextras-forge:0.5.3")
+
+    implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+    jarJar("folk.sisby:kaleido-config:${property("deps.kaleido")}")
 
     compileOnly("org.jspecify:jspecify:1.0.0")
 
@@ -114,7 +119,7 @@ dependencies {
 
     // YACL  - required by McQoy
     if (hasProperty("deps.yacl")) {
-        localRuntime("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
+        localRuntime("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-forge")
     }
 }
 
@@ -169,10 +174,10 @@ publishMods {
     additionalFiles.from(tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").map { it.archiveFile.get() })
 
     type = STABLE
-    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} NeoForge"
-    version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
+    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version} Forge"
+    version = "${property("mod.version")}+${property("deps.minecraft")}-forge"
     changelog = provider { rootProject.file("CHANGELOG-LATEST.md").readText() }
-    modLoaders.add("neoforge")
+    modLoaders.add("forge")
 
     modrinth {
         projectId = property("publish.modrinth") as String
@@ -199,7 +204,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = property("mod.group") as String
-            artifactId = (property("mod.id") as String) + "-neoforge"
+            artifactId = (property("mod.id") as String) + "-forge"
             version = (property("mod.version") as String) + "+${property("deps.minecraft")}"
             from(components["java"])
         }
