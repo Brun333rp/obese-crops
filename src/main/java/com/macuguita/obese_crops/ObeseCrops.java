@@ -26,7 +26,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
-import com.macuguita.obese_crops.common.reg.OCComponents;
+//? >= 1.21 {
+/*import com.macuguita.obese_crops.common.reg.OCComponents;
+*///?}
 import com.macuguita.obese_crops.common.reg.OCCreativeTabs;
 import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
 import com.macuguita.obese_crops.common.reg.OCEnchantments;

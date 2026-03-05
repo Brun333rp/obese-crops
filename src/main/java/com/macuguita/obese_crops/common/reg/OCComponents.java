@@ -22,7 +22,8 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
+//? >=1.21 {
+/*import com.macuguita.lib.platform.registry.GuitaRegistries;
 import com.macuguita.lib.platform.registry.GuitaRegistry;
 import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
@@ -42,3 +43,4 @@ public final class OCComponents {
 		COMPONENTS.init();
 	}
 }
+*///?}

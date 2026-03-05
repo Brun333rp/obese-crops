@@ -103,8 +103,9 @@ legacyForge {
 }
 
 dependencies {
-    // McQoy
     implementation("maven.modrinth:macu-lib:1.0.6-${property("deps.minecraft")}-forge")
+    compileOnly("io.github.llamalad7:mixinextras-common:0.5.3")
+    annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.3")
     implementation("io.github.llamalad7:mixinextras-forge:0.5.3")
     jarJar("io.github.llamalad7:mixinextras-forge:0.5.3")
 
