@@ -79,7 +79,7 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addElement(OCObjects.OBESE_GOLDEN_APPLE.getId());
 		getOrCreateRawBuilder(OCBlockTags.SCYTHE_WEEDS)
 				.addOptionalTag(BlockTags.FLOWERS.location())
-				.addElement(getRes(Blocks.SHORT_GRASS))
+				.addElement(getRes(Blocks./*? >= 1.21 {*/SHORT_GRASS/*?} else {*//*GRASS*//*?}*/))
 				.addElement(getRes(Blocks.FERN))
 				.addElement(getRes(Blocks.DEAD_BUSH))
 				.addElement(getRes(Blocks.VINE))

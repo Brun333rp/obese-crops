@@ -22,6 +22,7 @@
 
 package com.macuguita.obese_crops.common.reg;
 
+//? >= 1.21 {
 import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.HolderGetter;
@@ -73,3 +74,26 @@ public final class OCEnchantments {
 
 	}
 }
+//?} else {
+/*import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+
+import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.obese_crops.ObeseCrops;
+
+import com.macuguita.obese_crops.common.enchantment.BountifulReap;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.enchantment.Enchantment;
+
+public final class OCEnchantments {
+
+	private static final GuitaRegistry<Enchantment> ENCHANTMENTS = GuitaRegistries.create(BuiltInRegistries.ENCHANTMENT, ObeseCrops.MOD_ID);
+
+	public static final GuitaRegistryEntry<Enchantment> BOUNTIFUL_REAP = ENCHANTMENTS.register("bountiful_reap", BountifulReap::new);
+
+	public static void init() {
+		ENCHANTMENTS.init();
+	}
+}
+*///?}

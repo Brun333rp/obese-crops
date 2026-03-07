@@ -32,7 +32,6 @@ import com.google.common.collect.Lists;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import org.jspecify.annotations.Nullable;
 
@@ -48,9 +47,26 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
+//? >= 1.21 {
+import com.mojang.serialization.MapCodec;
+//?}
+
 @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
 public class ThinTrunkPlacer extends TrunkPlacer {
-	public static final MapCodec<ThinTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
+
+	public static final
+			//? >= 1.21 {
+			MapCodec
+			//?} else {
+			/*Codec
+			*///?}
+			<ThinTrunkPlacer> CODEC = RecordCodecBuilder.
+			//? >= 1.21 {
+			mapCodec
+			//?} else {
+			/*create
+			*///?}
+					(
 			instance -> trunkPlacerParts(instance).and(
 					instance.group(
 							Codec.doubleRange(0.0, 1.0).fieldOf("trunk_height_scale").forGetter(tp -> tp.trunkHeightScale),
@@ -60,7 +76,7 @@ public class ThinTrunkPlacer extends TrunkPlacer {
 					)
 			).apply(instance, ThinTrunkPlacer::new)
 	);
-
+	
 	private final double trunkHeightScale;
 	private final double clusterDensity;
 	private final double branchSlope;

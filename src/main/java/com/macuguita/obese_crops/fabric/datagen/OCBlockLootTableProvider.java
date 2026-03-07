@@ -49,8 +49,16 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
 public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 
-	protected OCBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-		super(dataOutput, registryLookup);
+	protected OCBlockLootTableProvider(FabricDataOutput dataOutput
+									   //? >= 1.21 {
+									   , CompletableFuture<HolderLookup.Provider> registryLookup
+									   //?}
+	) {
+		super(dataOutput
+				//? >= 1.21 {
+				, registryLookup
+				//?}
+		);
 	}
 
 	@Override

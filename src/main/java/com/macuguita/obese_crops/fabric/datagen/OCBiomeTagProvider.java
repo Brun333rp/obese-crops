@@ -33,7 +33,11 @@ import net.minecraft.world.level.biome.Biome;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+//? >= 1.21 {
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+//?} else {
+/*import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
+*///?}
 
 public class OCBiomeTagProvider extends FabricTagProvider<Biome> {
 
@@ -44,7 +48,7 @@ public class OCBiomeTagProvider extends FabricTagProvider<Biome> {
 	@Override
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		tag(OCBiomeTags.FLOWERING_OAK_TREE)
-				.addOptionalTag(ConventionalBiomeTags.IS_FOREST.location());
+				.addOptionalTag(ConventionalBiomeTags./*? >= 1.21 {*/IS_FOREST/*?} else {*//*FOREST*//*?}*/.location());
 	}
 }
 //? }

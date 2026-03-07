@@ -27,6 +27,7 @@ import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
 import com.macuguita.obese_crops.common.utils.OCUtils;
 import com.mojang.serialization.MapCodec;
+
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -35,10 +36,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,9 +59,18 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+//? >= 1.21 {
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.ItemInteractionResult;
+//?} else {
+/*import net.minecraft.world.InteractionResult;
+*///?}
+
 public class ObeseCropBlock extends HorizontalDirectionalBlock implements BonemealableBlock {
 
+	//? >= 1.21 {
 	public static final MapCodec<ObeseCropBlock> CODEC = simpleCodec(ObeseCropBlock::new);
+	//?}
 	public static final IntegerProperty CARVED = IntegerProperty.create("carved", 0, 3);
 	public static final VoxelShape[] VOXEL_SHAPES = {
 			Shapes.block(),
@@ -96,7 +104,12 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+	//? >= 1.21 {
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	//?} else {
+	 /*public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		 ItemStack stack = player.getItemInHand(hand);
+		*///?}
 		if (stack.is(OCItemTags.SHARP_TOOLS)) {
 			if (state.getValue(CARVED) == 3) {
 				level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
@@ -108,13 +121,21 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 			Item item = stack.getItem();
 			level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 			if (!level.isClientSide()) player.awardStat(Stats.ITEM_USED.get(item));
+			//? >= 1.21 {
 			return ItemInteractionResult.SUCCESS;
+			//?} else {
+			/*return InteractionResult.SUCCESS;
+			*///?}
 		}
-		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+		//? >= 1.21 {
+		return super.useItemOn(stack, state, level, pos, player, hand, hit);
+		//?} else {
+		/*return super.use(state, level, pos, player, hand, hit);
+		*///?}
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		VoxelShape shape = VOXEL_SHAPES[state.getValue(CARVED)];
 		return switch (state.getValue(FACING)) {
 			case NORTH -> shape;
@@ -125,18 +146,20 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 		};
 	}
 
+	//? >= 1.21 {
 	@Override
 	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
 		return CODEC;
 	}
+	//?}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*//*, boolean isClient *//*?}*/) {
 		return state.getValue(CARVED) == 0
 				&& level.getBlockState(pos.above()).canBeReplaced()
 				&& ObeseCrops.getObeseBlockEntry(this)
 				.map(ObeseMapResourceReloadListener.ObeseBlockData.Entry::foliage)
-				.map(it -> !it.defaultBlockState().is(BlockTags.AIR)).orElse(false);
+				.map(it -> !it.defaultBlockState().isAir()).orElse(false);
 	}
 
 	@Override

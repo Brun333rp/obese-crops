@@ -26,9 +26,9 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
-import com.macuguita.lib.platform.registry.GuitaRegistry;
-import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.FloweringOakSaplingBlock;
@@ -44,11 +44,16 @@ import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+
+//? >= 1.21 {
+import net.minecraft.world.level.block.grower.TreeGrower;
+//?} else {
+/*import com.macuguita.obese_crops.common.tree.TreeGrower;
+*///?}
 
 public final class OCObjects {
 

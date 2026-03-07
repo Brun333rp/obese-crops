@@ -32,6 +32,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -68,12 +69,12 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	protected boolean isRandomlyTicking(BlockState state) {
+	public boolean isRandomlyTicking(BlockState state) {
 		return state.getValue(AGE) < MAX_AGE;
 	}
 
 	@Override
-	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (random.nextInt(5) == 0) {
 			int i = state.getValue(AGE);
 			if (i < MAX_AGE) {
@@ -94,20 +95,20 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		BlockState blockState = level.getBlockState(pos.above());
 		return blockState.is(OCBlockTags.FLOWERING_LEAVES);
 	}
 
 	@Override
-	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
 		return direction == Direction.UP && !state.canSurvive(level, pos)
 				? Blocks.AIR.defaultBlockState()
 				: super.updateShape(state, direction, neighborState, level, pos, neighborPos);
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*//*, boolean isClient *//*?}*/) {
 		return state.getValue(AGE) < MAX_AGE;
 	}
 
@@ -139,22 +140,34 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+	//? >= 1.21 {
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+	//?} else {
+	/*public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	*///?}
 		if (state.getValue(AGE) == MAX_AGE) {
 			level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_ALL);
 			Block.popResourceFromFace(level, pos, Direction.DOWN, new ItemStack(Items.APPLE, 1));
 			return InteractionResult.SUCCESS;
 		}
-		return super.useWithoutItem(state, level, pos, player, hitResult);
+		//? >= 1.21 {
+		return super.useWithoutItem(state, level, pos, player, hit);
+		//?} else {
+		/*return super.use(state, level, pos, player, hand, hit);
+		*///?}
 	}
 
 	@Override
+	//? >= 1.21 {
 	protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+	//?} else {
+	/*public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+	*///?}
 		return false;
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return VOXEL_SHAPE[state.getValue(AGE)];
 	}
 

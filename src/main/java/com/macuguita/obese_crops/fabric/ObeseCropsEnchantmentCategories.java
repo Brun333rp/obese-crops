@@ -20,27 +20,17 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.common.reg;
+package com.macuguita.obese_crops.fabric;
 
-//? >=1.21 {
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
-import com.macuguita.obese_crops.ObeseCrops;
-import com.mojang.serialization.Codec;
+//? < 1.21 && fabric {
 
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
+/*import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public final class OCComponents {
+public final class ObeseCropsEnchantmentCategories {
 
-	public static final GuitaRegistry<DataComponentType<?>> COMPONENTS = GuitaRegistries.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ObeseCrops.MOD_ID);
+	private ObeseCropsEnchantmentCategories() {}
 
-	public static final GuitaRegistryEntry<DataComponentType<Float>> PULLING_SPEED = COMPONENTS.register("pulling_speed",
-			() -> DataComponentType.<Float>builder().persistent(Codec.FLOAT).build());
+	public static final EnchantmentCategory SCYTHES = EnchantmentCategory.valueOf("OBESE_CROPS_SCYTHE");
 
-	public static void init() {
-		COMPONENTS.init();
-	}
 }
-//?}
+*///?}

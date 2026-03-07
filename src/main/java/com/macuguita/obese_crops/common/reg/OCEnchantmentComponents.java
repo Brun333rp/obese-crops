@@ -22,11 +22,12 @@
 
 package com.macuguita.obese_crops.common.reg;
 
+//? >=1.21 {
 import java.util.function.UnaryOperator;
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
-import com.macuguita.lib.platform.registry.GuitaRegistry;
-import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.component.DataComponentType;
@@ -82,3 +83,4 @@ public final class OCEnchantmentComponents {
 		ENCHANTMENT_COMPONENTS.init();
 	}
 }
+//?}

@@ -46,6 +46,12 @@ public final class OCItemTags {
 	}
 
 	private static TagKey<Item> createCommonTag(String name) {
-		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
+		return TagKey.create(Registries.ITEM,
+				//? >= 1.21 {
+				ResourceLocation.fromNamespaceAndPath(
+				//?} else {
+				/*new ResourceLocation(
+				*///?}
+				"c", name));
 	}
 }

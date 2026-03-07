@@ -1,8 +1,0 @@
-{
-  "parent": "obese_crops:block/obese_crop",
-  "textures": {
-    "inside": "obese_crops:block/obese_golden_apple_inside",
-    "side": "obese_crops:block/obese_golden_apple",
-    "top": "obese_crops:block/obese_golden_apple_top"
-  }
-}

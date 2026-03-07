@@ -71,7 +71,12 @@ public class ObeseMapResourceReloadListener
 							new JsonReader(new InputStreamReader(stream))
 					).getAsJsonObject();
 
-					ResourceLocation cropBlockId = ResourceLocation.parse(
+					ResourceLocation cropBlockId =
+							//? >= 1.21 {
+							ResourceLocation.parse(
+							//?} else {
+							/*new ResourceLocation(
+							*///?}
 							identifier.getPath()
 									.substring(identifier.getPath().indexOf("/") + 1, identifier.getPath().length() - 5)
 									.replace("/", ":")

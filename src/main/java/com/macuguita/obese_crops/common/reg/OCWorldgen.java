@@ -25,9 +25,9 @@ package com.macuguita.obese_crops.common.reg;
 import java.util.List;
 import java.util.OptionalInt;
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
-import com.macuguita.lib.platform.registry.GuitaRegistry;
-import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;

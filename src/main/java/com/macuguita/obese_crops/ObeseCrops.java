@@ -26,11 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
-//? >= 1.21 {
-/*import com.macuguita.obese_crops.common.reg.OCComponents;
-*///?}
 import com.macuguita.obese_crops.common.reg.OCCreativeTabs;
-import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
 import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
@@ -45,6 +41,11 @@ import org.slf4j.LoggerFactory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+
+//? >= 1.21 {
+import com.macuguita.obese_crops.common.reg.OCComponents;
+import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
+//?}
 
 public class ObeseCrops {
 
@@ -82,7 +83,12 @@ public class ObeseCrops {
     }
 
     public static ResourceLocation id(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+        return
+				//? >= 1.21 {
+				ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+				//?} else {
+				/*new ResourceLocation(MOD_ID, name);
+				*///?}
     }
 
     public static void init() {
@@ -105,10 +111,12 @@ public class ObeseCrops {
 
     private static void initRegistries() {
         OCObjects.init();
-        OCComponents.init();
         OCCreativeTabs.init();
-        OCEnchantmentComponents.init();
         OCWorldgen.init();
-        OCEnchantments.init();
+		OCEnchantments.init();
+		//? >= 1.21 {
+		OCComponents.init();
+		OCEnchantmentComponents.init();
+		//?}
     }
 }

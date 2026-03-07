@@ -11,7 +11,8 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
-        this["macu_libVersion"] = prop("deps.macu_lib")
+        this["extraFabricEntrypoints"] = ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = ", \"obese_crops.fabric.mixins.json\""
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
@@ -120,12 +121,18 @@ dependencies {
 
 stonecutter {
     replacements.string {
+        direction = eval(current.version, ">1.21.11")
+        replace("accessWidener v2 named", "accessWidener v2 official")
+    }
+    replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")
     }
     replacements.string {
         direction = eval(current.version, ">1.21")
         replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
+        replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
+        replace("BootstapContext", "BootstrapContext")
     }
 }
 

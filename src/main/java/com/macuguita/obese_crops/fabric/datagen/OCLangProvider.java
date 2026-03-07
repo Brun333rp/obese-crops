@@ -24,32 +24,47 @@ package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
 import java.util.Locale;
-import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.ObeseCrops;
-import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 
+//? >= 1.21 {
+import java.util.concurrent.CompletableFuture;
+import com.macuguita.obese_crops.common.reg.OCEnchantments;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.enchantment.Enchantment;
+//?}
+
 public class OCLangProvider extends FabricLanguageProvider {
 
-	public OCLangProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-		super(dataOutput, "en_us", registryLookup);
+	public OCLangProvider(FabricDataOutput dataOutput
+						  //? >= 1.21 {
+						  , CompletableFuture<HolderLookup.Provider> registryLookup
+						  //?}
+	) {
+		super(dataOutput, "en_us"
+				//? >= 1.21 {
+				, registryLookup
+				//?}
+		);
 	}
 
 	@Override
-	public void generateTranslations(HolderLookup.Provider wrapperLookup, TranslationBuilder translationBuilder) {
+	public void generateTranslations(
+			//? >= 1.21 {
+			HolderLookup.Provider wrapperLookup,
+			//?}
+			TranslationBuilder translationBuilder) {
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_APPLE.get());
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_BEETROOT.get());
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_CARROT.get());
@@ -69,8 +84,10 @@ public class OCLangProvider extends FabricLanguageProvider {
 
 		OCObjects.SCYTHE_ITEMS.stream().forEach(item -> generateItemTranslations(translationBuilder, item.get()));
 		translationBuilder.add("itemGroup." + ObeseCrops.MOD_ID + "." + ObeseCrops.MOD_ID, "Obese Crops");
+		//? >= 1.21 {
 		generateEnchantmentTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP);
 		generateEnchantmentDescriptionTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP, "Allows you scythe to reap in a bigger area.");
+		//?}
 		generateItemTagTranslations(translationBuilder, OCItemTags.SCYTHES);
 		generateItemTagTranslations(translationBuilder, OCItemTags.SCYTHE_ENCHANTABLE);
 		generateItemTagTranslations(translationBuilder, OCItemTags.THIN_LOGS);
@@ -102,6 +119,7 @@ public class OCLangProvider extends FabricLanguageProvider {
 		translationBuilder.add(item, temp);
 	}
 
+	//? >= 1.21 {
 	private void generateEnchantmentTranslations(TranslationBuilder translationBuilder, ResourceKey<Enchantment> enchantment) {
 		String temp = capitalizeString(enchantment.location().getPath().replace("_", " "));
 		translationBuilder.add("enchantment." + enchantment.location().getNamespace() + "." + enchantment.location().getPath(), temp);
@@ -110,10 +128,11 @@ public class OCLangProvider extends FabricLanguageProvider {
 	private void generateEnchantmentDescriptionTranslations(TranslationBuilder translationBuilder, ResourceKey<Enchantment> enchantment, String description) {
 		translationBuilder.add("enchantment." + enchantment.location().getNamespace() + "." + enchantment.location().getPath() + ".desc", description);
 	}
+	//?}
 
 	private void generateItemTagTranslations(TranslationBuilder translationBuilder, TagKey<Item> itemTag) {
 		String temp = capitalizeString(itemTag.location().getPath().replace("_", " "));
-		translationBuilder.add(itemTag, temp);
+		translationBuilder.add(itemTag.location(), temp);
 	}
 }
 //? }

@@ -22,25 +22,29 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-//? >=1.21 {
-import com.macuguita.lib.reg.GuitaRegistries;
+//? < 1.21 {
+
+/*import com.macuguita.lib.reg.GuitaRegistries;
 import com.macuguita.lib.reg.GuitaRegistry;
 import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
-import com.mojang.serialization.Codec;
 
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 
-public final class OCComponents {
+import java.util.UUID;
 
-	public static final GuitaRegistry<DataComponentType<?>> COMPONENTS = GuitaRegistries.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ObeseCrops.MOD_ID);
+public class OCEntityAttributes {
 
-	public static final GuitaRegistryEntry<DataComponentType<Float>> PULLING_SPEED = COMPONENTS.register("pulling_speed",
-			() -> DataComponentType.<Float>builder().persistent(Codec.FLOAT).build());
+	public static final GuitaRegistry<Attribute> ATTRIBUTES = GuitaRegistries.create(BuiltInRegistries.ATTRIBUTE, ObeseCrops.MOD_ID);
 
-	public static void init() {
-		COMPONENTS.init();
-	}
+	public static final UUID BASE_PULLING_SPEED_UUID = UUID.fromString("a51f885d-0416-444c-bfeb-5c5eac9e8115");
+
+	public static final GuitaRegistryEntry<Attribute> PULLING_SPEED = ATTRIBUTES.register(
+			ObeseCrops.MOD_ID + "generic.pulling_speed",
+			() -> new RangedAttribute("attribute.name." + ObeseCrops.MOD_ID + ".generic.pulling_speed",
+					0.0, 0.0, 1024.0));
+
 }
-//?}
+*///?}

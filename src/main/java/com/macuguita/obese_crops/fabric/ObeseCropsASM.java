@@ -20,27 +20,29 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.common.reg;
+package com.macuguita.obese_crops.fabric;
 
-//? >=1.21 {
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
-import com.macuguita.obese_crops.ObeseCrops;
-import com.mojang.serialization.Codec;
+//? < 1.21 && fabric {
 
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
+/*import com.chocohead.mm.api.ClassTinkerers;
 
-public final class OCComponents {
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.MappingResolver;
 
-	public static final GuitaRegistry<DataComponentType<?>> COMPONENTS = GuitaRegistries.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ObeseCrops.MOD_ID);
+public class ObeseCropsASM implements Runnable{
 
-	public static final GuitaRegistryEntry<DataComponentType<Float>> PULLING_SPEED = COMPONENTS.register("pulling_speed",
-			() -> DataComponentType.<Float>builder().persistent(Codec.FLOAT).build());
+	public static final String ENCHANTMENT_CATEGORY_SCYTHE = "OBESE_CROPS_SCYTHE";
 
-	public static void init() {
-		COMPONENTS.init();
+	@Override
+	public void run() {
+		MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
+		String enchantmentCategoryTarget = remapper.mapClassName("intermediary", "net.minecraft.class_1886");
+
+		ClassTinkerers.addTransformation(enchantmentCategoryTarget, (classNode -> {
+			classNode.permittedSubclasses = null;
+		}));
+		ClassTinkerers.enumBuilder(enchantmentCategoryTarget).addEnumSubclass(ENCHANTMENT_CATEGORY_SCYTHE, "com.macuguita.obese_crops.fabric.ScytheEnchantmentCategory").build();
 	}
+
 }
-//?}
+*///?}

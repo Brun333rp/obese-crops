@@ -16,7 +16,14 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
-        this["macu_libVersion"] = prop("deps.macu_lib")
+        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+                ""
+            else
+                ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+                ""
+            else
+                ", \"obese_crops.fabric.mixins.json\""
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
@@ -49,10 +56,15 @@ repositories {
         Triple("Minecraft Forge", "https://maven.minecraftforge.net", emptyList()),
         Triple("shedaniel (Cloth Config)", "https://maven.shedaniel.me/", listOf("me.shedaniel")),
         Triple("Xander Maven", "https://maven.isxander.dev/releases/", listOf("dev.isxander")),
-        Triple("Terraformers (Mod Menu)", "https://maven.terraformersmc.com/releases/", listOf("com.terraformersmc", "dev.emi")),
+        Triple(
+            "Terraformers (Mod Menu)",
+            "https://maven.terraformersmc.com/releases/",
+            listOf("com.terraformersmc", "dev.emi")
+        ),
         Triple("Wisp Forest Maven", "https://maven.wispforest.io/releases/", listOf("io.wispforest")),
         Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
         Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
+        Triple("Jitpack", "https://jitpack.io", emptyList()),
     )
 
     exclusiveRepos.forEach { (name, url, groups) ->
@@ -100,6 +112,13 @@ dependencies {
 
         implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
         include("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+
+        if (hasProperty("deps.fabric_asm")) {
+            modImplementation("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}") {
+                exclude(group = "net.fabricmc.fabric-api")
+            }
+            include("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}")
+        }
     }
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
@@ -123,12 +142,18 @@ configurations.all {
 
 stonecutter {
     replacements.string {
+        direction = eval(current.version, ">1.21.11")
+        replace("accessWidener v2 named", "accessWidener v2 official")
+    }
+    replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")
     }
     replacements.string {
         direction = eval(current.version, ">1.21")
         replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
+        replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
+        replace("BootstapContext", "BootstrapContext")
     }
 }
 

@@ -1,8 +1,0 @@
-{
-  "parent": "obese_crops:block/obese_crop",
-  "textures": {
-    "inside": "obese_crops:block/obese_poisonous_potato_inside",
-    "side": "obese_crops:block/obese_poisonous_potato",
-    "top": "obese_crops:block/obese_poisonous_potato"
-  }
-}

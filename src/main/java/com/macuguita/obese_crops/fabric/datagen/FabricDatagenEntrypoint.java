@@ -23,7 +23,6 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
 
 import net.minecraft.core.RegistrySetBuilder;
@@ -31,6 +30,10 @@ import net.minecraft.core.registries.Registries;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+
+//? >= 1.21 {
+import com.macuguita.obese_crops.common.reg.OCEnchantments;
+//?}
 
 public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 
@@ -53,7 +56,9 @@ public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 	public void buildRegistry(RegistrySetBuilder registryBuilder) {
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, OCWorldgen::bootstrapConfiguredFeatures);
 		registryBuilder.add(Registries.PLACED_FEATURE, OCWorldgen::bootstrapPlacedFeatures);
+		//? >= 1.21 {
 		registryBuilder.add(Registries.ENCHANTMENT, OCEnchantments::bootstrap);
+		//?}
 	}
 }
 //? }
