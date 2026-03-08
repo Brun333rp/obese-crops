@@ -16,7 +16,7 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
-        this["awFile"] = prop("mod.id") + "+" + prop("deps.minecraft") + ".accesswidener"
+        this["ctFile"] = prop("mod.id") + "+" + prop("deps.minecraft") + ".classtweaker"
         this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
                 ""
             else
@@ -41,7 +41,7 @@ version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
 base.archivesName = property("mod.id") as String
 
 loom {
-    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}+${property("deps.minecraft")}.accesswidener")
+    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}+${property("deps.minecraft")}.classtweaker")
 }
 
 jsonlang {
@@ -142,10 +142,10 @@ configurations.all {
 }
 
 stonecutter {
-    replacements.string {
-        direction = eval(current.version, ">1.21.11")
-        replace("accessWidener v2 named", "accessWidener v2 official")
-    }
+//    replacements.string {
+//        direction = eval(current.version, ">1.21.11")
+//        replace("classTweaker v1 named", "classTweaker v1 official")
+//    }
     replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")

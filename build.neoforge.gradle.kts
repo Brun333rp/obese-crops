@@ -132,10 +132,10 @@ dependencies {
 }
 
 stonecutter {
-    replacements.string {
-        direction = eval(current.version, ">1.21.11")
-        replace("accessWidener v2 named", "accessWidener v2 official")
-    }
+//    replacements.string {
+//        direction = eval(current.version, ">1.21.11")
+//        replace("classTweaker v1 named", "classTweaker v1 official")
+//    }
     replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")
@@ -150,7 +150,7 @@ stonecutter {
 
 tasks {
     processResources {
-        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
+        exclude("**/fabric.mod.json", "**/*.classtweaker", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
     }
 
     named("createMinecraftArtifacts") {

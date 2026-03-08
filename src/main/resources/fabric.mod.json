@@ -12,7 +12,7 @@
   "icon": "assets/icon.png",
   "license": "MIT",
   "environment": "*",
-  "accessWidener": "${awFile}",
+  "accessWidener": "${ctFile}",
   "entrypoints": {
     "main": [
       "com.macuguita.obese_crops.fabric.FabricEntrypoint"
