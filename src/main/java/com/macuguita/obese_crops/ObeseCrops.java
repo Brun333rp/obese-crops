@@ -43,8 +43,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 //? >= 1.21 {
-import com.macuguita.obese_crops.common.reg.OCComponents;
+/*import com.macuguita.obese_crops.common.reg.OCComponents;
 import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
+*///?} else {
+import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
 //?}
 
 public class ObeseCrops {
@@ -85,10 +87,10 @@ public class ObeseCrops {
     public static ResourceLocation id(String name) {
         return
 				//? >= 1.21 {
-				ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
-				//?} else {
-				/*new ResourceLocation(MOD_ID, name);
-				*///?}
+				/*ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+				*///?} else {
+				new ResourceLocation(MOD_ID, name);
+				//?}
     }
 
     public static void init() {
@@ -115,8 +117,10 @@ public class ObeseCrops {
         OCWorldgen.init();
 		OCEnchantments.init();
 		//? >= 1.21 {
-		OCComponents.init();
+		/*OCComponents.init();
 		OCEnchantmentComponents.init();
+		*///?} else {
+		OCEntityAttributes.init();
 		//?}
     }
 }

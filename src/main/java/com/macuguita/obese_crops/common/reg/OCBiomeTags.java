@@ -30,6 +30,8 @@ import net.minecraft.world.level.biome.Biome;
 
 public final class OCBiomeTags {
 
+	private OCBiomeTags() {}
+
 	public static final TagKey<Biome> FLOWERING_OAK_TREE = createTag("flowering_oak_tree");
 
 	private static TagKey<Biome> createTag(String name) {

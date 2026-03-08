@@ -23,17 +23,25 @@
 package com.macuguita.obese_crops.common.enchantment;
 
 //? < 1.21 {
-
-/*import com.macuguita.obese_crops.fabric.ObeseCropsEnchantmentCategories;
-
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+
+//? fabric {
+/*import com.macuguita.obese_crops.fabric.ObeseCropsEnchantmentCategories;
+*///?} else {
+import com.macuguita.obese_crops.forge.ExtendedEnums;
+//?}
 
 public class BountifulReap extends Enchantment {
 
 	public BountifulReap() {
-		super(Rarity.COMMON, ObeseCropsEnchantmentCategories.SCYTHES, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+		super(Rarity.COMMON,
+				//? fabric {
+				/*ObeseCropsEnchantmentCategories.SCYTHES
+				*///?} else {
+				ExtendedEnums.SCYTHES
+				//?}
+				, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 	}
 
 	@Override
@@ -41,4 +49,4 @@ public class BountifulReap extends Enchantment {
 		return 3;
 	}
 }
-*///?}
+//?}

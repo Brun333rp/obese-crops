@@ -20,21 +20,15 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.fabric;
+package com.macuguita.obese_crops.forge;
 
-//? fabric {
-/*import com.macuguita.obese_crops.ObeseCrops;
-import com.macuguita.obese_crops.client.ObeseCropsClient;
+//? forge {
+import com.macuguita.obese_crops.common.item.ScytheItem;
 
-import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class FabricClientEntrypoint implements ClientModInitializer {
+public final class ExtendedEnums {
 
-    @Override
-    public void onInitializeClient() {
-        ObeseCrops.LOGGER.info("Initializing {} Client", ObeseCrops.MOD_ID);
-        ObeseCropsClient.init();
-    }
-
+	public static final EnchantmentCategory SCYTHES = EnchantmentCategory.create("OBESE_CROPS_SCYTHE", (item) -> item instanceof ScytheItem);
 }
-*///?}
+//?}

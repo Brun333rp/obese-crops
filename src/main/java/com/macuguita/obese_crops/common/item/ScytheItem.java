@@ -57,7 +57,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 //? >= 1.21 {
-import org.apache.commons.lang3.mutable.MutableFloat;
+/*import org.apache.commons.lang3.mutable.MutableFloat;
 import com.macuguita.obese_crops.common.reg.OCComponents;
 import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
 import net.minecraft.core.component.DataComponents;
@@ -66,28 +66,28 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.util.Mth;
-//?} else {
-/*import com.google.common.collect.ImmutableMultimap;
+*///?} else {
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.macuguita.obese_crops.common.reg.OCEnchantments;
 import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-*///?}
+//?}
 
 public class ScytheItem extends DiggerItem {
 
 	//? < 1.21 {
-	/*private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-	*///?}
+	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+	//?}
 	
 	public ScytheItem(Tier material, int damage, float speed, float pullingSpeed, Properties settings) {
 		//? >= 1.21 {
-		super(material, OCBlockTags.SCYTHE_MINABLE, settings
+		/*super(material, OCBlockTags.SCYTHE_MINABLE, settings
 				.attributes(createAttributes(material, damage, speed))
 				.component(DataComponents.TOOL, createToolProperties())
 				.component(OCComponents.PULLING_SPEED.get(), pullingSpeed));
-		//?} else {
-		/*super(damage, speed, material, OCBlockTags.SCYTHE_MINABLE, settings);
+		*///?} else {
+		super(damage, speed, material, OCBlockTags.SCYTHE_MINABLE, settings);
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(
 				Attributes.ATTACK_DAMAGE,
@@ -100,11 +100,11 @@ public class ScytheItem extends DiggerItem {
 				OCEntityAttributes.PULLING_SPEED.get(), new AttributeModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID, "Tool modifier", pullingSpeed, AttributeModifier.Operation.ADDITION)
 		);
 		this.defaultModifiers = builder.build();
-		*///?}
+		//?}
 	}
 
 	//? >= 1.21 {
-	private static Tool createToolProperties() {
+	/*private static Tool createToolProperties() {
 		return new Tool(
 				List.of(Tool.Rule.overrideSpeed(OCBlockTags.SCYTHE_MINABLE, 1.5F)), 1.0F, 2
 		);
@@ -126,12 +126,12 @@ public class ScytheItem extends DiggerItem {
 				)
 				.build();
 	}
-	//?} else {
-	/*@Override
+	*///?} else {
+	@Override
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
 		return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
 	}
-	*///?}
+	//?}
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -172,21 +172,21 @@ public class ScytheItem extends DiggerItem {
 
 			double strength = 1.0D;
 			//? < 1.21 {
-			/*var attribute = player.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
+			var attribute = player.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
 			var modifier = attribute != null ? attribute.getModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID) : null;
-			*///?}
+			//?}
 			Float pullingSpeed =
 					//? >= 1.21 {
-					itemStack.get(OCComponents.PULLING_SPEED.get());
-					//?} else {
-					/*modifier != null ? (float) modifier.getAmount() : null;
-					*///?}
+					/*itemStack.get(OCComponents.PULLING_SPEED.get());
+					*///?} else {
+					modifier != null ? (float) modifier.getAmount() : null;
+					//?}
 			if (pullingSpeed != null) {
 				strength = pullingSpeed;
 			}
 			//? < 1.21 {
-			/*strength /= 5;
-			*///?}
+			strength /= 5;
+			//?}
 
 			Vec3 playerPosVec = player.position();
 			List<Entity> entities = level.getEntities(player, area);
@@ -195,7 +195,7 @@ public class ScytheItem extends DiggerItem {
 				if (entity instanceof ItemEntity itemEntity) {
 					itemEntity.setDeltaMovement(playerPosVec.subtract(itemEntity.position()).scale(strength));
 					itemEntity.hurtMarked = true;
-					itemEntity.setThrower(player/*? < 1.21 {*//*.getUUID()*//*?}*/);
+					itemEntity.setThrower(player/*? < 1.21 {*/.getUUID()/*?}*/);
 				}
 			}
 
@@ -203,10 +203,10 @@ public class ScytheItem extends DiggerItem {
 			if (success) {
 				itemStack.hurtAndBreak(1, player,
 						//? >= 1.21 {
-						LivingEntity.getSlotForHand(hand)
-						//?} else {
-						/*playerx -> playerx.broadcastBreakEvent(hand)
-						*///?}
+						/*LivingEntity.getSlotForHand(hand)
+						*///?} else {
+						playerx -> playerx.broadcastBreakEvent(hand)
+						//?}
 				);
 			}
 		}
@@ -247,10 +247,10 @@ public class ScytheItem extends DiggerItem {
 		if (success && !level.isClientSide) {
 			context.getItemInHand().hurtAndBreak(1, player,
 					//? >= 1.21 {
-					LivingEntity.getSlotForHand(context.getHand())
-					 //?} else {
-					/*playerx -> playerx.broadcastBreakEvent(context.getHand())
-					*///?}
+					/*LivingEntity.getSlotForHand(context.getHand())
+					 *///?} else {
+					playerx -> playerx.broadcastBreakEvent(context.getHand())
+					//?}
 					);
 			level.playSound(player, centerPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 			player.getCooldowns().addCooldown(this, 10);
@@ -312,7 +312,7 @@ public class ScytheItem extends DiggerItem {
 
 	public static int getCollectionRadius(ItemStack stack, LivingEntity attacker) {
 		//? >= 1.21 {
-		MutableFloat mutableFloat = new MutableFloat(1.0F);
+		/*MutableFloat mutableFloat = new MutableFloat(1.0F);
 		EnchantmentHelper.runIterationOnItem(
 				stack,
 				(holder, i) -> holder.value().modifyUnfilteredValue(
@@ -320,17 +320,17 @@ public class ScytheItem extends DiggerItem {
 				)
 		);
 		return Mth.floor(Math.max(0.0F, mutableFloat.floatValue()));
-		//?} else {
-		/*return 1 + EnchantmentHelper.getEnchantmentLevel(OCEnchantments.BOUNTIFUL_REAP.get(), attacker);
-		*///?}
+		*///?} else {
+		return 1 + EnchantmentHelper.getEnchantmentLevel(OCEnchantments.BOUNTIFUL_REAP.get(), attacker);
+		//?}
 	}
 
 	//? >= 1.21 {
-	@Override
+	/*@Override
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
 	}
-	//?}
+	*///?}
 
 	@Override
 	public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player miner) {

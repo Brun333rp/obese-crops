@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric;
 
 //? fabric {
-import java.nio.file.Path;
+/*import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -119,4 +119,4 @@ public class FabricPlatformImpl implements Platform {
         return array;
     }
 }
-//?}
+*///?}

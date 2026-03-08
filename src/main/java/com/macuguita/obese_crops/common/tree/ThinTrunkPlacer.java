@@ -48,24 +48,24 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
 //? >= 1.21 {
-import com.mojang.serialization.MapCodec;
-//?}
+/*import com.mojang.serialization.MapCodec;
+*///?}
 
 @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
 public class ThinTrunkPlacer extends TrunkPlacer {
 
 	public static final
 			//? >= 1.21 {
-			MapCodec
-			//?} else {
-			/*Codec
-			*///?}
+			/*MapCodec
+			*///?} else {
+			Codec
+			//?}
 			<ThinTrunkPlacer> CODEC = RecordCodecBuilder.
 			//? >= 1.21 {
-			mapCodec
-			//?} else {
-			/*create
-			*///?}
+			/*mapCodec
+			*///?} else {
+			create
+			//?}
 					(
 			instance -> trunkPlacerParts(instance).and(
 					instance.group(

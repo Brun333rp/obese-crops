@@ -59,16 +59,16 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
 //? >= 1.21 {
-import net.minecraft.world.ItemInteractionResult;
-//?} else {
-/*import net.minecraft.world.InteractionResult;
-*///?}
+/*import net.minecraft.world.ItemInteractionResult;
+*///?} else {
+import net.minecraft.world.InteractionResult;
+//?}
 
 public class ThinLogBlock extends PipeBlock {
 
 	//? >= 1.21 {
-	public static final MapCodec<ThinLogBlock> CODEC = simpleCodec(ThinLogBlock::new);
-	//?}
+	/*public static final MapCodec<ThinLogBlock> CODEC = simpleCodec(ThinLogBlock::new);
+	*///?}
 	public static final Map<Block, Block> STRIPPED_THIN_LOGS = new HashMap<>();
 	public static final float APOTHEM = 0.25f;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -174,11 +174,11 @@ public class ThinLogBlock extends PipeBlock {
 
 	@Override
 	//? >= 1.21 {
-	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-	//?} else {
-	/*public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	/*protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	*///?} else {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		ItemStack stack = player.getItemInHand(hand);
-		*///?}
+		//?}
 		Item item = stack.getItem();
 		if (stack.is(ItemTags.AXES) && strippable) {
 			Block stripped = STRIPPED_THIN_LOGS.get(this);
@@ -194,17 +194,17 @@ public class ThinLogBlock extends PipeBlock {
 				if (!player.getAbilities().instabuild)
 					stack.hurtAndBreak(1, player,
 							//? >= 1.21 {
-							LivingEntity.getSlotForHand(hand)
-							 //?} else {
-							/*playerx -> playerx.broadcastBreakEvent(hand)
-							*///?}
+							/*LivingEntity.getSlotForHand(hand)
+							 *///?} else {
+							playerx -> playerx.broadcastBreakEvent(hand)
+							//?}
 					);
 				level.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 				//? >= 1.21 {
-				return ItemInteractionResult.SUCCESS;
-				 //?} else {
-				/*return InteractionResult.SUCCESS;
-				*///?}
+				/*return ItemInteractionResult.SUCCESS;
+				 *///?} else {
+				return InteractionResult.SUCCESS;
+				//?}
 			}
 		}
 		if (stack.is(OCItemTags.C_SHEARS)) {
@@ -230,27 +230,27 @@ public class ThinLogBlock extends PipeBlock {
 			if (!player.getAbilities().instabuild)
 				stack.hurtAndBreak(1, player,
 						//? >= 1.21 {
-						LivingEntity.getSlotForHand(hand)
-						 //?} else {
-						/*playerx -> playerx.broadcastBreakEvent(hand)
-						*///?}
+						/*LivingEntity.getSlotForHand(hand)
+						 *///?} else {
+						playerx -> playerx.broadcastBreakEvent(hand)
+						//?}
 				);
 			if (!level.isClientSide())
 				player.awardStat(Stats.ITEM_USED.get(item));
 			level.playSound(player, pos, SoundEvents.PUMPKIN_CARVE, SoundSource.BLOCKS, 1.0F, 1.0F);
 
 			//? >= 1.21 {
-			return ItemInteractionResult.SUCCESS;
-			 //?} else {
-			/*return InteractionResult.SUCCESS;
-			*///?}
+			/*return ItemInteractionResult.SUCCESS;
+			 *///?} else {
+			return InteractionResult.SUCCESS;
+			//?}
 		}
 
 		//? >= 1.21 {
-		return super.useItemOn(stack, state, level, pos, player, hand, hit);
-		 //?} else {
-		/*return super.use(state, level, pos, player, hand, hit);
-		*///?}
+		/*return super.useItemOn(stack, state, level, pos, player, hand, hit);
+		 *///?} else {
+		return super.use(state, level, pos, player, hand, hit);
+		//?}
 	}
 
 	@Override
@@ -264,9 +264,9 @@ public class ThinLogBlock extends PipeBlock {
 	}
 
 	//? >= 1.21 {
-	@Override
+	/*@Override
 	protected MapCodec<? extends PipeBlock> codec() {
 		return CODEC;
 	}
-	//?}
+	*///?}
 }

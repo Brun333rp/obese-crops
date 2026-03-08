@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.concurrent.CompletableFuture;
+/*import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.block.ObeseCropBlock;
 import com.macuguita.obese_crops.common.reg.OCObjects;
@@ -51,13 +51,13 @@ public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 
 	protected OCBlockLootTableProvider(FabricDataOutput dataOutput
 									   //? >= 1.21 {
-									   , CompletableFuture<HolderLookup.Provider> registryLookup
-									   //?}
+									   /^, CompletableFuture<HolderLookup.Provider> registryLookup
+									   ^///?}
 	) {
 		super(dataOutput
 				//? >= 1.21 {
-				, registryLookup
-				//?}
+				/^, registryLookup
+				^///?}
 		);
 	}
 
@@ -120,4 +120,4 @@ public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 		);
 	}
 }
-//? }
+*///? }

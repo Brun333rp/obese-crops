@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[2,)"
+loaderVersion = "[47,)"
 license = "MIT"
 
 [[mods]]
@@ -10,26 +10,27 @@ displayURL = ""
 logoFile = "assets/icon.png"
 authors = "macuguita"
 description = '''Bigger crops, that bring a bountiful harvest!'''
+enumExtensions="META-INF/enumextensions.json"
 
 [[mixins]]
 config = "obese_crops.mixins.json"
 
 [[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+file="${atFile}"
 
 [[dependencies.obese_crops]]
 modId = "forge"
-type = "required"
-versionRange = "[21.1.181,)"
+mandatory = true
+versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.obese_crops]]
 modId = "minecraft"
-type = "required"
+mandatory = true
 versionRange = "${minecraft}"
 
 [[dependencies.obese_crops]]
 modId = "macu_lib"
-type = "required"
+mandatory = true
 versionRange = "[1.0.6, ]"

@@ -31,6 +31,8 @@ import net.minecraft.world.item.Item;
 
 public final class OCItemTags {
 
+	private OCItemTags() {}
+
 	public static final TagKey<Item> SCYTHES = createTag("scythes");
 	public static final TagKey<Item> SCYTHE_ENCHANTABLE = createTag("scythe_enchantable");
 	public static final TagKey<Item> THIN_LOGS = createTag("thin_logs");
@@ -48,10 +50,10 @@ public final class OCItemTags {
 	private static TagKey<Item> createCommonTag(String name) {
 		return TagKey.create(Registries.ITEM,
 				//? >= 1.21 {
-				ResourceLocation.fromNamespaceAndPath(
-				//?} else {
-				/*new ResourceLocation(
-				*///?}
+				/*ResourceLocation.fromNamespaceAndPath(
+				*///?} else {
+				new ResourceLocation(
+				//?}
 				"c", name));
 	}
 }

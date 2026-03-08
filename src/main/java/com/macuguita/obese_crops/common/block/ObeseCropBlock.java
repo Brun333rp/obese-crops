@@ -60,17 +60,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 //? >= 1.21 {
-import net.minecraft.tags.BlockTags;
+/*import net.minecraft.tags.BlockTags;
 import net.minecraft.world.ItemInteractionResult;
-//?} else {
-/*import net.minecraft.world.InteractionResult;
-*///?}
+*///?} else {
+import net.minecraft.world.InteractionResult;
+//?}
 
 public class ObeseCropBlock extends HorizontalDirectionalBlock implements BonemealableBlock {
 
 	//? >= 1.21 {
-	public static final MapCodec<ObeseCropBlock> CODEC = simpleCodec(ObeseCropBlock::new);
-	//?}
+	/*public static final MapCodec<ObeseCropBlock> CODEC = simpleCodec(ObeseCropBlock::new);
+	*///?}
 	public static final IntegerProperty CARVED = IntegerProperty.create("carved", 0, 3);
 	public static final VoxelShape[] VOXEL_SHAPES = {
 			Shapes.block(),
@@ -105,11 +105,11 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 
 	@Override
 	//? >= 1.21 {
-	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-	//?} else {
-	 /*public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	/*protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	*///?} else {
+	 public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		 ItemStack stack = player.getItemInHand(hand);
-		*///?}
+		//?}
 		if (stack.is(OCItemTags.SHARP_TOOLS)) {
 			if (state.getValue(CARVED) == 3) {
 				level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
@@ -122,16 +122,16 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 			level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 			if (!level.isClientSide()) player.awardStat(Stats.ITEM_USED.get(item));
 			//? >= 1.21 {
-			return ItemInteractionResult.SUCCESS;
-			//?} else {
-			/*return InteractionResult.SUCCESS;
-			*///?}
+			/*return ItemInteractionResult.SUCCESS;
+			*///?} else {
+			return InteractionResult.SUCCESS;
+			//?}
 		}
 		//? >= 1.21 {
-		return super.useItemOn(stack, state, level, pos, player, hand, hit);
-		//?} else {
-		/*return super.use(state, level, pos, player, hand, hit);
-		*///?}
+		/*return super.useItemOn(stack, state, level, pos, player, hand, hit);
+		*///?} else {
+		return super.use(state, level, pos, player, hand, hit);
+		//?}
 	}
 
 	@Override
@@ -147,14 +147,14 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 	}
 
 	//? >= 1.21 {
-	@Override
+	/*@Override
 	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
 		return CODEC;
 	}
-	//?}
+	*///?}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*//*, boolean isClient *//*?}*/) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*/, boolean isClient /*?}*/) {
 		return state.getValue(CARVED) == 0
 				&& level.getBlockState(pos.above()).canBeReplaced()
 				&& ObeseCrops.getObeseBlockEntry(this)

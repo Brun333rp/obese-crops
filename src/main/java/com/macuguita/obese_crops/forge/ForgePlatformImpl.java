@@ -23,9 +23,10 @@
 package com.macuguita.obese_crops.forge;
 
 //? forge {
-/*import com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.Platform;
+import com.macuguita.obese_crops.mixin.FireBlockAccessor;
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.client.Minecraft;
@@ -36,6 +37,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+
+import net.minecraft.world.level.block.Blocks;
+
+import net.minecraft.world.level.block.FireBlock;
 
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.ForgeMod;
@@ -168,7 +173,14 @@ public class ForgePlatformImpl implements Platform {
         RELOAD_LISTENERS.add(reloadListener);
     }
 
-    private static ItemLike[] unpackItems(Supplier<? extends ItemLike>[] items) {
+	@Override
+	public void registerFlammableBlock(int burnChance, int spreadChance, Block... blocks) {
+		for (Block block : blocks) {
+			((FireBlock)  Blocks.FIRE).setFlammable(block, burnChance, spreadChance);
+		}
+	}
+
+	private static ItemLike[] unpackItems(Supplier<? extends ItemLike>[] items) {
         ItemLike[] array = new ItemLike[items.length];
         for (int i = 0; i < items.length; i++) {
             array[i] = Objects.requireNonNull(items[i].get());
@@ -200,4 +212,4 @@ public class ForgePlatformImpl implements Platform {
 				});
     }
 }
-*///?}
+//?}

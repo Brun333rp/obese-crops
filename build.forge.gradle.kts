@@ -11,8 +11,15 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
-        this["extraFabricEntrypoints"] = ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
-        this["extraFabricMixins"] = ", \"obese_crops.fabric.mixins.json\""
+        this["atFile"] = "META-INF/accesstransformer+" + prop("deps.minecraft") + ".cfg"
+        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"obese_crops.fabric.mixins.json\""
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
@@ -75,6 +82,8 @@ configurations {
 }
 
 legacyForge {
+    accessTransformers.from(rootProject.file("src/main/resources/META-INF/accesstransformer+${property("deps.minecraft")}.cfg"))
+
     version = property("deps.forge_loader") as String
     validateAccessTransformers = true
 
@@ -115,14 +124,14 @@ dependencies {
 
     compileOnly("org.jspecify:jspecify:1.0.0")
 
-    if (hasProperty("deps.mcqoy")) {
-        localRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
-    }
-
-    // YACL  - required by McQoy
-    if (hasProperty("deps.yacl")) {
-        localRuntime("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-forge")
-    }
+//    if (hasProperty("deps.mcqoy")) {
+//        localRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
+//    }
+//
+//    // YACL  - required by McQoy
+//    if (hasProperty("deps.yacl")) {
+//        localRuntime("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-forge")
+//    }
 }
 
 stonecutter {
@@ -144,7 +153,7 @@ stonecutter {
 
 tasks {
     processResources {
-        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml")
+        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/neoforge.mods.toml", "**/generated*")
     }
 
     named("createMinecraftArtifacts") {
@@ -159,12 +168,21 @@ tasks {
     }
 }
 
+sourceSets {
+    main {
+        resources.srcDir("$rootDir/src/main/generated+${stonecutter.current.version}")
+        resources.exclude(".cache")
+    }
+}
+
 java {
     withSourcesJar()
     val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) {
         JavaVersion.VERSION_25
-    } else {
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
         JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
     }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat

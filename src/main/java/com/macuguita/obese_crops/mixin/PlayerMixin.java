@@ -44,14 +44,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 //? fabric {
-import net.minecraft.world.item.SwordItem;
-//?}
-//? >=1.21 {
-import java.util.Optional;
-import com.macuguita.obese_crops.common.reg.OCComponents;
-//?} else {
-/*import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+/*import net.minecraft.world.item.SwordItem;
 *///?}
+//? >=1.21 {
+/*import java.util.Optional;
+import com.macuguita.obese_crops.common.reg.OCComponents;
+*///?} else {
+import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+//?}
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -72,38 +72,38 @@ public abstract class PlayerMixin extends LivingEntity {
 			Entity entityHit,
 			Operation<Void> original
 			//? >=1.21 {
-			, @Local(type = ItemStack.class, ordinal = 0) ItemStack itemStack
-			//?}
+			/*, @Local(type = ItemStack.class, ordinal = 0) ItemStack itemStack
+			*///?}
 	) {
 		double strength = 1.0D;
 		if (entityHit instanceof LivingEntity livingEntity) {
 			//? >=1.21 {
-			if (itemStack.has(OCComponents.PULLING_SPEED.get())) {
+			/*if (itemStack.has(OCComponents.PULLING_SPEED.get())) {
 				Float pullingSpeed = itemStack.get(OCComponents.PULLING_SPEED.get());
 				float baseSpeed = Optional.ofNullable(pullingSpeed).orElse(0.0f);
 				strength = baseSpeed * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			}
-			//?} else {
-			/*var attribute = livingEntity.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
+			*///?} else {
+			var attribute = livingEntity.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
 			var modifier = attribute != null ? attribute.getModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID) : null;
 			Float pullingSpeed =modifier != null ? (float) modifier.getAmount() : null;
 			if (pullingSpeed != null) {
 				strength = pullingSpeed  * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			}
 			strength /= 5;
-			*///?}
+			//?}
 		}
 		entityHit.setDeltaMovement(this.position().subtract(entityHit.position()).scale(strength));
 		entityHit.hurtMarked = true;
 	}
 
 	//? fabric {
-	@Unique
+	/*@Unique
 	private static final int ITEM_STACK_ORDINAL =
 			//? >=1.21
-			1
+			//1
 			//? <1.21
-			//0
+			0
 	;
 	@Definition(id = "SwordItem", type = SwordItem.class)
 	@Expression("? instanceof SwordItem")
@@ -117,13 +117,13 @@ public abstract class PlayerMixin extends LivingEntity {
 	) {
 		return original || itemStack.getItem() instanceof ScytheItem;
 	}
-	//? } else {
-	/*@Unique
+	*///? } else {
+	@Unique
 	private static final String SWEEPING_TARGET =
 			//? neoforge
 			//"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z"
 			//? forge
-			//"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/minecraftforge/common/ToolAction;)Z"
+			"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/minecraftforge/common/ToolAction;)Z"
 	;
 	@ModifyExpressionValue(
 			method = "attack",
@@ -135,5 +135,5 @@ public abstract class PlayerMixin extends LivingEntity {
 			) {
 		return original || itemStack.getItem() instanceof ScytheItem;
 	}
-	*///? }
+	//? }
 }

@@ -16,6 +16,7 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
+        this["awFile"] = prop("mod.id") + "+" + prop("deps.minecraft") + ".accesswidener"
         this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
                 ""
             else
@@ -40,7 +41,7 @@ version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
 base.archivesName = property("mod.id") as String
 
 loom {
-    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}.accesswidener")
+    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}+${property("deps.minecraft")}.accesswidener")
 }
 
 jsonlang {
@@ -159,7 +160,7 @@ stonecutter {
 
 tasks {
     processResources {
-        exclude("**/neoforge.mods.toml", "**/mods.toml")
+        exclude("**/neoforge.mods.toml", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
     }
 
     register<Copy>("buildAndCollect") {
@@ -176,14 +177,20 @@ loom.runs.named("server") {
 
 fabricApi {
     configureDataGeneration {
-        outputDirectory = file("$rootDir/src/main/generated")
+        outputDirectory = file("$rootDir/src/main/generated+${stonecutter.current.version}")
         client = true
     }
 }
 
 java {
     withSourcesJar()
-    val javaCompat = JavaVersion.VERSION_21
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) {
+        JavaVersion.VERSION_25
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
+        JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
+    }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }

@@ -27,10 +27,10 @@ import java.util.List;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
 //? >= 1.21 {
-import com.mojang.serialization.MapCodec;
-//?} else {
-/*import com.mojang.serialization.Codec;
-*///?}
+/*import com.mojang.serialization.MapCodec;
+*///?} else {
+import com.mojang.serialization.Codec;
+//?}
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -43,16 +43,16 @@ public class SingleObeseAppleTreeDecorator extends TreeDecorator {
 
 	public static final
 	//? >= 1.21 {
-	MapCodec
-	 //?} else {
-	/*Codec
-	*///?}
+	/*MapCodec
+	 *///?} else {
+	Codec
+	//?}
 	<SingleObeseAppleTreeDecorator> CODEC =
 			//? >= 1.21 {
-			MapCodec
-			 //?} else {
-			/*Codec
-			*///?}
+			/*MapCodec
+			 *///?} else {
+			Codec
+			//?}
 					.unit(SingleObeseAppleTreeDecorator::new);
 
 	@Override

@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.common.tree;
 
 //? < 1.21 {
-/*import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -71,4 +71,4 @@ public class TreeGrower extends AbstractTreeGrower {
 		return hasFlowers && this.flowers.isPresent() ? this.flowers.get() : this.tree.orElse(null);
 	}
 }
-*///?}
+//?}

@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/item/enchantment/EnchantmentCategory",
+      "name": "OBESE_CROPS_SCYTHE",
+      "constructor": "(Ljava/util/function/Predicate;)V",
+      "parameters": {
+        "class": "com/macuguita/obese_crops/registry/EnumParams",
+        "field": "SCYTHE_CATEGORY"
+      }
+    }
+  ]
+}

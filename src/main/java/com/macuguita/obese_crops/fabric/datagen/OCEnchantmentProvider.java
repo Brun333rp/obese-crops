@@ -22,8 +22,8 @@
 
 package com.macuguita.obese_crops.fabric.datagen;
 
-//? fabric {
-import java.util.concurrent.CompletableFuture;
+//? fabric && >= 1.21 {
+/*import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -47,4 +47,4 @@ public class OCEnchantmentProvider extends FabricDynamicRegistryProvider {
 		return "Obese Crops Enchantment Provider";
 	}
 }
-//? }
+*///? }

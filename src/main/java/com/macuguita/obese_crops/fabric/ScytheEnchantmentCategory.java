@@ -29,6 +29,8 @@ import com.macuguita.obese_crops.mixin.fabric.EnchantmentCategoryMixin;
 
 import net.minecraft.world.item.Item;
 
+import org.spongepowered.asm.mixin.Shadow;
+
 public class ScytheEnchantmentCategory extends EnchantmentCategoryMixin {
 
 	@Override

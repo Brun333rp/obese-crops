@@ -42,16 +42,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 //? fabric {
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-//? } else {
-/*import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-*///? }
+/*import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+*///? } else {
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+//? }
 
 public class ObeseMapResourceReloadListener
 //? fabric
-		implements SimpleSynchronousResourceReloadListener
-//? neoforge
-		//implements ResourceManagerReloadListener
+		//implements SimpleSynchronousResourceReloadListener
+//? neoforge || forge
+		implements ResourceManagerReloadListener
 {
 
 	public static final ResourceLocation ID = ObeseCrops.id("obese_block_map_reload_listener");
@@ -73,10 +73,10 @@ public class ObeseMapResourceReloadListener
 
 					ResourceLocation cropBlockId =
 							//? >= 1.21 {
-							ResourceLocation.parse(
-							//?} else {
-							/*new ResourceLocation(
-							*///?}
+							/*ResourceLocation.parse(
+							*///?} else {
+							new ResourceLocation(
+							//?}
 							identifier.getPath()
 									.substring(identifier.getPath().indexOf("/") + 1, identifier.getPath().length() - 5)
 									.replace("/", ":")
@@ -135,11 +135,11 @@ public class ObeseMapResourceReloadListener
 	}
 
 	//? fabric {
-	@Override
+	/*@Override
 	public ResourceLocation getFabricId() {
 		return ID;
 	}
-	//? }
+	*///? }
 
 	public record ObeseBlockData(Entry primary, List<Entry> secondaries) {
 

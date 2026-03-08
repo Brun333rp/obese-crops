@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.accessTransformers
+import org.gradle.kotlin.dsl.from
+
 plugins {
     id("net.neoforged.moddev")
     id ("dev.kikugie.postprocess.jsonlang")
@@ -11,8 +14,15 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
-        this["extraFabricEntrypoints"] = ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
-        this["extraFabricMixins"] = ", \"obese_crops.fabric.mixins.json\""
+        this["atFile"] = "META-INF/accesstransformer+" + prop("deps.minecraft") + ".cfg"
+        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"obese_crops.fabric.mixins.json\""
     }
 
     filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
@@ -75,6 +85,8 @@ configurations {
 }
 
 neoForge {
+    accessTransformers.from(rootProject.file("src/main/resources/META-INF/accesstransformer+${property("deps.minecraft")}.cfg"))
+
     version = property("deps.neoforge") as String
     validateAccessTransformers = true
 
@@ -138,7 +150,7 @@ stonecutter {
 
 tasks {
     processResources {
-        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml")
+        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
     }
 
     named("createMinecraftArtifacts") {
@@ -153,12 +165,21 @@ tasks {
     }
 }
 
+sourceSets {
+    main {
+        resources.srcDir("$rootDir/src/main/generated+${stonecutter.current.version}")
+        resources.exclude(".cache")
+    }
+}
+
 java {
     withSourcesJar()
     val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) {
         JavaVersion.VERSION_25
-    } else {
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
         JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
     }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat

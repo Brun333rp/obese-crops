@@ -15,7 +15,7 @@ description = '''Bigger crops, that bring a bountiful harvest!'''
 config = "obese_crops.mixins.json"
 
 [[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+file="${atFile}"
 
 [[dependencies.obese_crops]]
 modId = "neoforge"
@@ -32,4 +32,4 @@ versionRange = "${minecraft}"
 [[dependencies.obese_crops]]
 modId = "macu_lib"
 type = "required"
-versionRange = "[,]"
+versionRange = "[2.0.0,]"

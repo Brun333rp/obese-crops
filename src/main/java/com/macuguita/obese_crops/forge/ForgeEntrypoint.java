@@ -23,19 +23,20 @@
 package com.macuguita.obese_crops.forge;
 
 //? forge {
-/*import com.macuguita.obese_crops.ObeseCrops;
+import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.client.ObeseCropsClient;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(ObeseCrops.MOD_ID)
 public class ForgeEntrypoint {
 
-	public ForgeEntrypoint(IEventBus modEventBus) {
+	public ForgeEntrypoint() {
+		var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ObeseCrops.init();
 		modEventBus.addListener(this::commonSetup);
 	}
@@ -53,4 +54,4 @@ public class ForgeEntrypoint {
 		ObeseCrops.commonInit();
 	}
 }
-*///?}
+//?}
