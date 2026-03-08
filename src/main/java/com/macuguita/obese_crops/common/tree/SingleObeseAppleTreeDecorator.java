@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,11 @@ import java.util.List;
 
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.common.reg.OCWorldgen;
-import com.mojang.serialization.MapCodec;
+//? >= 1.21 {
+/*import com.mojang.serialization.MapCodec;
+*///?} else {
+import com.mojang.serialization.Codec;
+//?}
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -37,7 +41,19 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorTy
 
 public class SingleObeseAppleTreeDecorator extends TreeDecorator {
 
-	public static final MapCodec<SingleObeseAppleTreeDecorator> CODEC = MapCodec.unit(SingleObeseAppleTreeDecorator::new);
+	public static final
+	//? >= 1.21 {
+	/*MapCodec
+	 *///?} else {
+	Codec
+	//?}
+	<SingleObeseAppleTreeDecorator> CODEC =
+			//? >= 1.21 {
+			/*MapCodec
+			 *///?} else {
+			Codec
+			//?}
+					.unit(SingleObeseAppleTreeDecorator::new);
 
 	@Override
 	protected TreeDecoratorType<?> type() {

@@ -1,0 +1,15 @@
+{
+  "package": "com.macuguita.obese_crops.mixin",
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
+  "mixins": [
+    "fabric.EnchantmentCategoryMixin"
+  ]
+}

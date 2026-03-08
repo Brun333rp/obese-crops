@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,10 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
+//? >=1.21 {
+/*import com.macuguita.lib.platform.registry.GuitaRegistries;
+import com.macuguita.lib.platform.registry.GuitaRegistry;
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.mojang.serialization.Codec;
 
@@ -32,6 +33,8 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 public final class OCComponents {
+
+	private OCComponents() {}
 
 	public static final GuitaRegistry<DataComponentType<?>> COMPONENTS = GuitaRegistries.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ObeseCrops.MOD_ID);
 
@@ -42,3 +45,4 @@ public final class OCComponents {
 		COMPONENTS.init();
 	}
 }
+*///?}

@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.accessTransformers
+import org.gradle.kotlin.dsl.from
+
 plugins {
     id("net.neoforged.moddev")
     id ("dev.kikugie.postprocess.jsonlang")
@@ -11,10 +14,18 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
-        this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
+        this["atFile"] = "META-INF/accesstransformer+" + prop("deps.minecraft") + ".cfg"
+        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+            ""
+        else
+            ", \"obese_crops.fabric.mixins.json\""
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml", "${prop("mod.id")}.mixins.json")) {
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
         expand(props)
     }
 
@@ -65,7 +76,17 @@ repositories {
     }
 }
 
+val localRuntime by configurations.creating
+
+configurations {
+    runtimeClasspath {
+        extendsFrom(localRuntime)
+    }
+}
+
 neoForge {
+    accessTransformers.from(rootProject.file("src/main/resources/META-INF/accesstransformer+${property("deps.minecraft")}.cfg"))
+
     version = property("deps.neoforge") as String
     validateAccessTransformers = true
 
@@ -101,19 +122,35 @@ dependencies {
     compileOnly("org.jspecify:jspecify:1.0.0")
 
     if (hasProperty("deps.mcqoy")) {
-        implementation("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
+        localRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
     }
 
     // YACL  - required by McQoy
     if (hasProperty("deps.yacl")) {
-        runtimeOnly("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
+        localRuntime("dev.isxander:yet-another-config-lib:${property("deps.yacl")}-neoforge")
     }
 }
 
+stonecutter {
+    replacements.string {
+        direction = eval(current.version, ">1.21.11")
+        replace("accessWidener v2 named", "accessWidener v2 official")
+    }
+    replacements.string {
+        direction = eval(current.version, ">1.21.10")
+        replace("ResourceLocation", "Identifier")
+    }
+    replacements.string {
+        direction = eval(current.version, ">1.21")
+        replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
+        replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
+        replace("BootstapContext", "BootstrapContext")
+    }
+}
 
 tasks {
     processResources {
-        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml")
+        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
     }
 
     named("createMinecraftArtifacts") {
@@ -128,12 +165,21 @@ tasks {
     }
 }
 
+sourceSets {
+    main {
+        resources.srcDir("$rootDir/src/main/generated+${stonecutter.current.version}")
+        resources.exclude(".cache")
+    }
+}
+
 java {
     withSourcesJar()
     val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) {
         JavaVersion.VERSION_25
-    } else {
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
         JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
     }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat

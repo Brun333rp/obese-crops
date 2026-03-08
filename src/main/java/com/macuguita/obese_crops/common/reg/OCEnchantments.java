@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,12 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-import com.macuguita.obese_crops.ObeseCrops;
+//? >= 1.21 {
+/*import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
@@ -36,9 +37,11 @@ import net.minecraft.world.item.enchantment.effects.AddValue;
 
 public final class OCEnchantments {
 
+	private OCEnchantments() {}
+
 	public static final ResourceKey<Enchantment> BOUNTIFUL_REAP = key("bountiful_reap");
 
-	public static void bootstrap(BootstrapContext<Enchantment> context) {
+	public static void bootstrap(BootstapContext<Enchantment> context) {
 		HolderGetter<Item> items = context.lookup(Registries.ITEM);
 
 		register(
@@ -61,7 +64,7 @@ public final class OCEnchantments {
 		);
 	}
 
-	private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
+	private static void register(BootstapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
 		context.register(key, builder.build(key.location()));
 	}
 
@@ -73,3 +76,28 @@ public final class OCEnchantments {
 
 	}
 }
+*///?} else {
+import com.macuguita.lib.platform.registry.GuitaRegistries;
+import com.macuguita.lib.platform.registry.GuitaRegistry;
+
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+import com.macuguita.obese_crops.ObeseCrops;
+
+import com.macuguita.obese_crops.common.enchantment.BountifulReap;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.enchantment.Enchantment;
+
+public final class OCEnchantments {
+
+	private OCEnchantments() {}
+
+	private static final GuitaRegistry<Enchantment> ENCHANTMENTS = GuitaRegistries.create(BuiltInRegistries.ENCHANTMENT, ObeseCrops.MOD_ID);
+
+	public static final GuitaRegistryEntry<Enchantment> BOUNTIFUL_REAP = ENCHANTMENTS.register("bountiful_reap", BountifulReap::new);
+
+	public static void init() {
+		ENCHANTMENTS.init();
+	}
+}
+//?}

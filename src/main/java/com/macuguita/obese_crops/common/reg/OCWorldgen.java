@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,9 @@ package com.macuguita.obese_crops.common.reg;
 import java.util.List;
 import java.util.OptionalInt;
 
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.lib.platform.registry.GuitaRegistries;
+import com.macuguita.lib.platform.registry.GuitaRegistry;
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
@@ -38,7 +38,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -65,12 +65,14 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 //? fabric {
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+/*import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
-//? }
+*///? }
 
 public final class OCWorldgen {
+
+	private OCWorldgen() {}
 
     public static final GuitaRegistry<TrunkPlacerType<?>> TRUNK_PLACER = GuitaRegistries.create(BuiltInRegistries.TRUNK_PLACER_TYPE, ObeseCrops.MOD_ID);
     public static final GuitaRegistry<TreeDecoratorType<?>> TREE_DECORATOR = GuitaRegistries.create(BuiltInRegistries.TREE_DECORATOR_TYPE, ObeseCrops.MOD_ID);
@@ -101,7 +103,7 @@ public final class OCWorldgen {
 
     public static void init() {
         //? fabric {
-        // TODO: use the neoforge json editors for this <https://docs.neoforged.net/docs/worldgen/biomemodifier/>
+        /*// TODO: use the neoforge json editors for this <https://docs.neoforged.net/docs/worldgen/biomemodifier/>
         if (ObeseCrops.CONFIG.fabricOnly.floweringOakSpawn) {
             BiomeModifications.create(ObeseCrops.id("obese_apple_biome_modifications"))
                     .add(ModificationPhase.ADDITIONS,
@@ -109,12 +111,12 @@ public final class OCWorldgen {
                             context -> context.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, FLOWERING_OAKS_PLACED)
                     );
         }
-        //? }
+        *///? }
         TRUNK_PLACER.init();
         TREE_DECORATOR.init();
     }
 
-    public static void bootstrapConfiguredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> registerable) {
+    public static void bootstrapConfiguredFeatures(BootstapContext<ConfiguredFeature<?, ?>> registerable) {
         HolderGetter<PlacedFeature> placedFeatures = registerable.lookup(Registries.PLACED_FEATURE);
 
         SingleObeseAppleTreeDecorator appleDecorator = new SingleObeseAppleTreeDecorator();
@@ -147,7 +149,7 @@ public final class OCWorldgen {
                 ));
     }
 
-    public static void bootstrapPlacedFeatures(BootstrapContext<PlacedFeature> registerable) {
+    public static void bootstrapPlacedFeatures(BootstapContext<PlacedFeature> registerable) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = registerable.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(registerable, FLOWERING_OAK_PLACED, configuredFeatures.getOrThrow(FLOWERING_OAK_CONFIGURED), PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));

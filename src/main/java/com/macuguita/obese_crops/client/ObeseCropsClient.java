@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 
 package com.macuguita.obese_crops.client;
 
-import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.Platform;
 import com.macuguita.obese_crops.common.reg.OCObjects;

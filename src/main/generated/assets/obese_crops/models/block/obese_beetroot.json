@@ -1,8 +1,0 @@
-{
-  "parent": "obese_crops:block/obese_crop",
-  "textures": {
-    "inside": "obese_crops:block/obese_beetroot_inside",
-    "side": "obese_crops:block/obese_beetroot",
-    "top": "obese_crops:block/obese_beetroot"
-  }
-}

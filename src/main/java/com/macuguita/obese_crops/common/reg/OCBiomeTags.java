@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public final class OCBiomeTags {
+
+	private OCBiomeTags() {}
 
 	public static final TagKey<Biome> FLOWERING_OAK_TREE = createTag("flowering_oak_tree");
 

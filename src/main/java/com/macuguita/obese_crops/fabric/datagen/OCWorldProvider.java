@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.concurrent.CompletableFuture;
+/*import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -48,4 +48,4 @@ public class OCWorldProvider extends FabricDynamicRegistryProvider {
 		return "Obese Crops Worldgen Provider";
 	}
 }
-//? }
+*///? }

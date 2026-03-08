@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,22 +24,28 @@ package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
 
-import java.util.concurrent.CompletableFuture;
+/*import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 import com.macuguita.obese_crops.common.item.ScytheItem;
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.mixin.IngredientAccessor;
 
-import net.minecraft.advancements.Criterion;
+//? >=1.21 {
+/^import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+^///?} else {
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.data.recipes.FinishedRecipe;
+//?}
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -51,12 +57,19 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 @SuppressWarnings("rawtypes")
 public class OCRecipeProvider extends FabricRecipeProvider {
 
-	public OCRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-		super(output, registriesFuture);
+
+	public OCRecipeProvider(FabricDataOutput output/^?>=1.21 {^//^, CompletableFuture<HolderLookup.Provider> registriesFuture^//^?}^/) {
+		super(output /^?>=1.21 {^//^,registriesFuture^//^?}^/);
 	}
 
 	@Override
-	public void buildRecipes(RecipeOutput recipeOutput) {
+	public void buildRecipes(
+	//? >=1.21 {
+		/^RecipeOutput recipeOutput
+	^///?} else {
+		Consumer<FinishedRecipe> recipeOutput
+	//?}
+	) {
 		OCObjects.SCYTHE_ITEMS.getEntries().forEach(entry -> {
 			ScytheItem scythe = (ScytheItem) entry.get();
 			if (scythe == OCObjects.NETHERITE_SCYTHE.get()) return;
@@ -105,20 +118,43 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 		planksFromLog(recipeOutput, Blocks.OAK_PLANKS, OCItemTags.FLOWERING_OAK_LOGS, 4);
 	}
 
-	private Criterion getIngredientCriterion(Ingredient ingredient) {
+	private
+	//? >=1.21 {
+	/^Criterion
+	^///?} else {
+	CriterionTriggerInstance
+	//?}
+	getIngredientCriterion(Ingredient ingredient) {
 		for (Ingredient.Value value : ((IngredientAccessor) ingredient).obese_crops$getValues()) {
-			if (value instanceof Ingredient.TagValue(TagKey<Item> tag)) {
+			//? >=1.21 {
+			/^if (value instanceof Ingredient.TagValue(TagKey<Item> tag)) {
 				return has(tag);
 			}
 			if (value instanceof Ingredient.ItemValue(ItemStack item)) {
 				return has(item.getItem());
 			}
+			^///?} else {
+			if (value instanceof Ingredient.TagValue tag) {
+				return has(tag.tag);
+			}
+			if (value instanceof Ingredient.ItemValue item) {
+				return has(item.item.getItem());
+			}
+			//?}
 		}
 
 		throw new IllegalStateException("Ingredient has no values");
 	}
 
-	private void generateObeseBlockDeconstruction(RecipeOutput recipeOutput, ItemLike obeseBlock, ItemLike ozempicCrop) {
+	private void generateObeseBlockDeconstruction(
+			//? >=1.21 {
+			/^RecipeOutput recipeOutput,
+			^///?} else {
+			Consumer<FinishedRecipe> recipeOutput,
+			//?}
+			ItemLike obeseBlock,
+			ItemLike ozempicCrop
+	) {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ozempicCrop, 9)
 				.requires(obeseBlock)
 				.group("obese_crop")
@@ -126,4 +162,4 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 				.save(recipeOutput);
 	}
 }
-//? }
+*///? }

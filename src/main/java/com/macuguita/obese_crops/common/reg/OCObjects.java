@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,9 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.lib.platform.registry.GuitaRegistries;
+import com.macuguita.lib.platform.registry.GuitaRegistry;
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.FloweringOakSaplingBlock;
@@ -44,13 +44,20 @@ import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+//? >= 1.21 {
+/*import net.minecraft.world.level.block.grower.TreeGrower;
+*///?} else {
+import com.macuguita.obese_crops.common.tree.TreeGrower;
+//?}
+
 public final class OCObjects {
+
+	private OCObjects() {}
 
 	public static final GuitaRegistry<Block> BLOCKS = GuitaRegistries.create(BuiltInRegistries.BLOCK, ObeseCrops.MOD_ID);
 	public static final GuitaRegistry<Item> ITEMS = GuitaRegistries.create(BuiltInRegistries.ITEM, ObeseCrops.MOD_ID);
@@ -78,8 +85,8 @@ public final class OCObjects {
 	public static final GuitaRegistryEntry<Block> OBESE_POTATO_FOLIAGE = registerFoliage("obese_potato_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
 	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT_FOLIAGE = registerFoliage("obese_golden_carrot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
 
-	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LOG = registerWithItem("flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor()), true));
-	public static final GuitaRegistryEntry<Block> STRIPPED_FLOWERING_OAK_LOG = registerWithItem("stripped_flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor())));
+	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LOG = registerWithItem("flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor()), true));
+	public static final GuitaRegistryEntry<Block> STRIPPED_FLOWERING_OAK_LOG = registerWithItem("stripped_flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor())));
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LEAVES = registerWithItem("flowering_oak_leaves", () -> Blocks.leaves(SoundType.GRASS));
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_SAPLING = registerWithItem("flowering_oak_sapling", () -> new FloweringOakSaplingBlock(
 			new TreeGrower(
@@ -87,10 +94,10 @@ public final class OCObjects {
 					Optional.empty(),
 					Optional.of(OCWorldgen.FLOWERING_OAK_CONFIGURED),
 					Optional.of(OCWorldgen.FLOWERING_OAK_BEES_CONFIGURED)
-			), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+			), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 	public static final GuitaRegistryEntry<Block> POTTED_FLOWERING_OAK_SAPLING = BLOCKS.register("potted_flowering_oak_sapling", () -> Blocks.flowerPot(FLOWERING_OAK_SAPLING.get()));
 
-	public static final GuitaRegistryEntry<Block> APPLE = BLOCKS.register("apple", () -> new AppleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COCOA).mapColor(MapColor.COLOR_RED)));
+	public static final GuitaRegistryEntry<Block> APPLE = BLOCKS.register("apple", () -> new AppleBlock(BlockBehaviour.Properties.copy(Blocks.COCOA).mapColor(MapColor.COLOR_RED)));
 	public static final GuitaRegistryEntry<Item> APPLE_SEED = ITEMS.register("apple_seed", () -> new BlockItem(APPLE.get(), new Item.Properties()));
 
 	private static <T extends Block> GuitaRegistryEntry<T> registerFoliage(String name, Function<BlockBehaviour.Properties, T> blockFactory, BlockBehaviour.Properties properties) {

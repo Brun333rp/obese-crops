@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,21 @@
 package com.macuguita.obese_crops.common.block;
 
 import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.grower.TreeGrower;
+//? >= 1.21 {
+/*import net.minecraft.world.level.block.grower.TreeGrower;
+*///?} else {
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+//?}
 
 public class FloweringOakSaplingBlock extends SaplingBlock {
 
-	public FloweringOakSaplingBlock(TreeGrower treeGrower, Properties properties) {
+	public FloweringOakSaplingBlock(
+			//? >= 1.21 {
+			/*TreeGrower treeGrower,
+			*///?} else {
+			AbstractTreeGrower treeGrower,
+			//?}
+			Properties properties) {
 		super(treeGrower, properties);
 	}
 }

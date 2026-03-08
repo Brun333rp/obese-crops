@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +22,45 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.lib.platform.registry.GuitaRegistries;
+import com.macuguita.lib.platform.registry.GuitaRegistry;
+import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
 public final class OCCreativeTabs {
 
+	private OCCreativeTabs() {}
+
 	public static final GuitaRegistry<CreativeModeTab> ITEM_GROUPS = GuitaRegistries.create(BuiltInRegistries.CREATIVE_MODE_TAB, ObeseCrops.MOD_ID);
 
-	// TODO: maybe add enchantments to the creative tab
 	public static final GuitaRegistryEntry<CreativeModeTab> GW_TAB = ITEM_GROUPS.register(ObeseCrops.MOD_ID, () ->
 			CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
 					.title(Component.translatable("itemGroup." + ObeseCrops.MOD_ID + "." + ObeseCrops.MOD_ID))
 					.icon(() -> new ItemStack(OCObjects.OBESE_POTATO.get().asItem()))
-					.displayItems((itemDisplayParameters, output) ->
-							OCObjects.ITEMS.stream().map(block -> block.get().getDefaultInstance()).forEach(output::accept)
+					.displayItems((itemDisplayParameters, output) -> {
+								OCObjects.ITEMS.stream().map(block -> block.get().getDefaultInstance()).forEach(output::accept);
+								var bountifulReapEnchantment =
+										//? >= 1.21 {
+										/*itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP);
+										*///?} else {
+										OCEnchantments.BOUNTIFUL_REAP.get();
+										//?}
+								int bountifulReapMaxLevel =
+										//? >= 1.21 {
+										/*itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP).value().definition().maxLevel();
+										*///?} else {
+										OCEnchantments.BOUNTIFUL_REAP.get().getMaxLevel();
+										//?}
+								output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(bountifulReapEnchantment, bountifulReapMaxLevel)));
+							}
 					).build());
 
 	public static void init() {

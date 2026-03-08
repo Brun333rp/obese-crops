@@ -16,10 +16,18 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
-        this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
+        this["awFile"] = prop("mod.id") + "+" + prop("deps.minecraft") + ".accesswidener"
+        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+                ""
+            else
+                ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
+        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+                ""
+            else
+                ", \"obese_crops.fabric.mixins.json\""
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml", "${prop("mod.id")}.mixins.json")) {
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
         expand(props)
     }
 
@@ -33,7 +41,7 @@ version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
 base.archivesName = property("mod.id") as String
 
 loom {
-    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}.accesswidener")
+    accessWidenerPath = rootProject.file("src/main/resources/${property("mod.id")}+${property("deps.minecraft")}.accesswidener")
 }
 
 jsonlang {
@@ -49,10 +57,15 @@ repositories {
         Triple("Minecraft Forge", "https://maven.minecraftforge.net", emptyList()),
         Triple("shedaniel (Cloth Config)", "https://maven.shedaniel.me/", listOf("me.shedaniel")),
         Triple("Xander Maven", "https://maven.isxander.dev/releases/", listOf("dev.isxander")),
-        Triple("Terraformers (Mod Menu)", "https://maven.terraformersmc.com/releases/", listOf("com.terraformersmc", "dev.emi")),
+        Triple(
+            "Terraformers (Mod Menu)",
+            "https://maven.terraformersmc.com/releases/",
+            listOf("com.terraformersmc", "dev.emi")
+        ),
         Triple("Wisp Forest Maven", "https://maven.wispforest.io/releases/", listOf("io.wispforest")),
         Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
         Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
+        Triple("Jitpack", "https://jitpack.io", emptyList()),
     )
 
     exclusiveRepos.forEach { (name, url, groups) ->
@@ -89,8 +102,24 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
     compileOnly("org.jspecify:jspecify:1.0.0")
 
-    modImplementation("com.macuguita:macu_lib-fabric:${property("deps.macu_lib")}+${property("deps.minecraft")}") {
-        exclude(group = "net.fabricmc.fabric-api")
+    if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
+        modImplementation("com.macuguita:macu_lib-fabric:${property("deps.macu_lib")}+${property("deps.minecraft")}") {
+            exclude(group = "net.fabricmc.fabric-api")
+        }
+    } else {
+        modImplementation("maven.modrinth:macu-lib:1.0.6-${property("deps.minecraft")}-fabric") {
+            exclude(group = "net.fabricmc.fabric-api")
+        }
+
+        implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+        include("folk.sisby:kaleido-config:${property("deps.kaleido")}")
+
+        if (hasProperty("deps.fabric_asm")) {
+            modImplementation("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}") {
+                exclude(group = "net.fabricmc.fabric-api")
+            }
+            include("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}")
+        }
     }
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")
@@ -114,14 +143,24 @@ configurations.all {
 
 stonecutter {
     replacements.string {
+        direction = eval(current.version, ">1.21.11")
+        replace("accessWidener v2 named", "accessWidener v2 official")
+    }
+    replacements.string {
         direction = eval(current.version, ">1.21.10")
         replace("ResourceLocation", "Identifier")
+    }
+    replacements.string {
+        direction = eval(current.version, ">1.21")
+        replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
+        replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
+        replace("BootstapContext", "BootstrapContext")
     }
 }
 
 tasks {
     processResources {
-        exclude("**/neoforge.mods.toml", "**/mods.toml")
+        exclude("**/neoforge.mods.toml", "**/mods.toml", "**/pack.mcmeta", "**/generated*")
     }
 
     register<Copy>("buildAndCollect") {
@@ -138,14 +177,20 @@ loom.runs.named("server") {
 
 fabricApi {
     configureDataGeneration {
-        outputDirectory = file("$rootDir/src/main/generated")
+        outputDirectory = file("$rootDir/src/main/generated+${stonecutter.current.version}")
         client = true
     }
 }
 
 java {
     withSourcesJar()
-    val javaCompat = JavaVersion.VERSION_21
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) {
+        JavaVersion.VERSION_25
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
+        JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
+    }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ObeseCropFoliageBlock extends BushBlock {
 
-	public static final MapCodec<ObeseCropFoliageBlock> CODEC = simpleCodec(ObeseCropFoliageBlock::new);
+	//? >= 1.21 {
+	/*public static final MapCodec<ObeseCropFoliageBlock> CODEC = simpleCodec(ObeseCropFoliageBlock::new);
+	*///?}
 	protected static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
 
 	public ObeseCropFoliageBlock(Properties settings) {
@@ -54,7 +56,7 @@ public class ObeseCropFoliageBlock extends BushBlock {
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 
@@ -66,8 +68,10 @@ public class ObeseCropFoliageBlock extends BushBlock {
 				|| state.is(OCBlockTags.OBESE_CROP));
 	}
 
-	@Override
+	//? >= 1.21 {
+	/*@Override
 	protected MapCodec<? extends BushBlock> codec() {
 		return CODEC;
 	}
+	*///?}
 }

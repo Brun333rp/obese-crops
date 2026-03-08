@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,6 @@
 
 package com.macuguita.obese_crops.mixin;
 
-import java.util.Optional;
 
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
@@ -31,18 +30,28 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.macuguita.obese_crops.common.item.ScytheItem;
-import com.macuguita.obese_crops.common.reg.OCComponents;
+
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
+
+//? fabric {
+/*import net.minecraft.world.item.SwordItem;
+*///?}
+//? >=1.21 {
+/*import java.util.Optional;
+import com.macuguita.obese_crops.common.reg.OCComponents;
+*///?} else {
+import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+//?}
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -58,45 +67,67 @@ public abstract class PlayerMixin extends LivingEntity {
 			method = "attack",
 			at = @At("MIXINEXTRAS:EXPRESSION")
 	)
-	private void obese_crops$attack(
+	private void obese_crops$pullOnAttack(
 			Player instance,
 			Entity entityHit,
-			Operation<Void> original,
-			@Local(type = ItemStack.class, ordinal = 0) ItemStack itemStack
+			Operation<Void> original
+			//? >=1.21 {
+			/*, @Local(type = ItemStack.class, ordinal = 0) ItemStack itemStack
+			*///?}
 	) {
-		if (itemStack.getItem() instanceof ScytheItem) {
-			double strength = 1.0D;
-			if (entityHit instanceof LivingEntity livingEntity) {
-				if (itemStack.has(OCComponents.PULLING_SPEED.get())) {
-					Float pullingSpeed = itemStack.get(OCComponents.PULLING_SPEED.get());
-					float baseSpeed = Optional.ofNullable(pullingSpeed).orElse(0.0f);
-					strength = baseSpeed * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-				}
+		double strength = 1.0D;
+		if (entityHit instanceof LivingEntity livingEntity) {
+			//? >=1.21 {
+			/*if (itemStack.has(OCComponents.PULLING_SPEED.get())) {
+				Float pullingSpeed = itemStack.get(OCComponents.PULLING_SPEED.get());
+				float baseSpeed = Optional.ofNullable(pullingSpeed).orElse(0.0f);
+				strength = baseSpeed * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			}
-			entityHit.setDeltaMovement(this.position().subtract(entityHit.position()).scale(strength));
-			entityHit.hurtMarked = true;
+			*///?} else {
+			var attribute = livingEntity.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
+			var modifier = attribute != null ? attribute.getModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID) : null;
+			Float pullingSpeed =modifier != null ? (float) modifier.getAmount() : null;
+			if (pullingSpeed != null) {
+				strength = pullingSpeed  * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+			}
+			strength /= 5;
+			//?}
 		}
+		entityHit.setDeltaMovement(this.position().subtract(entityHit.position()).scale(strength));
+		entityHit.hurtMarked = true;
 	}
 
 	//? fabric {
-	@Definition(id = "itemStack2", local = @Local(type = ItemStack.class, ordinal = 1))
-	@Definition(id = "getItem", method = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;")
+	/*@Unique
+	private static final int ITEM_STACK_ORDINAL =
+			//? >=1.21
+			//1
+			//? <1.21
+			0
+	;
 	@Definition(id = "SwordItem", type = SwordItem.class)
-	@Expression("itemStack2.getItem() instanceof SwordItem")
+	@Expression("? instanceof SwordItem")
 	@ModifyExpressionValue(
 			method = "attack",
 			at = @At("MIXINEXTRAS:EXPRESSION")
 	)
-	private boolean obese_crops$attack(
+	private boolean obese_crops$sweepingDamage(
 			boolean original,
-			@Local(type = ItemStack.class, ordinal = 1) ItemStack itemStack
+			@Local(type = ItemStack.class, ordinal = ITEM_STACK_ORDINAL) ItemStack itemStack
 	) {
 		return original || itemStack.getItem() instanceof ScytheItem;
 	}
-	//? } else {
-	/*@ModifyExpressionValue(
+	*///? } else {
+	@Unique
+	private static final String SWEEPING_TARGET =
+			//? neoforge
+			//"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z"
+			//? forge
+			"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/minecraftforge/common/ToolAction;)Z"
+	;
+	@ModifyExpressionValue(
 			method = "attack",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z")
+			at = @At(value = "INVOKE", target = SWEEPING_TARGET)
 	)
 	private boolean obese_crops$attack(
 			boolean original,
@@ -104,5 +135,5 @@ public abstract class PlayerMixin extends LivingEntity {
 			) {
 		return original || itemStack.getItem() instanceof ScytheItem;
 	}
-	*///? }
+	//? }
 }

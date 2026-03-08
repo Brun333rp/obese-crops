@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.concurrent.CompletableFuture;
+/*import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
@@ -34,6 +34,8 @@ import net.minecraft.tags.ItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
+import net.minecraft.world.entity.animal.Chicken;
+
 public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
 	public OCItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
@@ -43,7 +45,8 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		OCObjects.SCYTHE_ITEMS.stream().forEach(item -> getOrCreateRawBuilder(OCItemTags.SCYTHES).addElement(item.getId()));
-		getOrCreateRawBuilder(OCItemTags.SCYTHE_ENCHANTABLE)
+		//? >= 1.21 {
+		/^getOrCreateRawBuilder(OCItemTags.SCYTHE_ENCHANTABLE)
 				.addTag(OCItemTags.SCYTHES.location());
 		getOrCreateRawBuilder(ItemTags.WEAPON_ENCHANTABLE)
 				.addOptionalTag(OCItemTags.SCYTHES.location());
@@ -55,6 +58,7 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 				.addOptionalTag(OCItemTags.SCYTHES.location());
 		getOrCreateRawBuilder(ItemTags.VANISHING_ENCHANTABLE)
 				.addOptionalTag(OCItemTags.SCYTHES.location());
+		^///?}
 
 		getOrCreateRawBuilder(OCItemTags.FLOWERING_LEAVES)
 				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId());
@@ -76,8 +80,11 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 				.addOptionalTag(ItemTags.SWORDS.location())
 				.addOptionalTag(ItemTags.AXES.location());
 
+		//? >= 1.21 {
+		/^// TODO: mixin into chicken to add this to food under 1.21
 		getOrCreateRawBuilder(ItemTags.CHICKEN_FOOD)
 				.addOptionalTag(OCObjects.APPLE_SEED.getId());
+		^///?}
 	}
 }
-//? }
+*///? }

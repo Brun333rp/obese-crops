@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,17 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import com.macuguita.obese_crops.common.reg.OCEnchantments;
-import com.macuguita.obese_crops.common.reg.OCWorldgen;
+/*import com.macuguita.obese_crops.common.reg.OCWorldgen;
 
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+
+//? >= 1.21 {
+/^import com.macuguita.obese_crops.common.reg.OCEnchantments;
+^///?}
 
 public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 
@@ -41,7 +44,9 @@ public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 		pack.addProvider(OCBiomeTagProvider::new);
 		pack.addProvider(OCBlockLootTableProvider::new);
 		pack.addProvider(OCBlockTagProvider::new);
-		pack.addProvider(OCEnchantmentProvider::new);
+		//? >= 1.21 {
+		/^pack.addProvider(OCEnchantmentProvider::new);
+		^///?}
 		pack.addProvider(OCItemTagProvider::new);
 		pack.addProvider(OCLangProvider::new);
 		pack.addProvider(OCModelProvider::new);
@@ -53,7 +58,9 @@ public class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 	public void buildRegistry(RegistrySetBuilder registryBuilder) {
 		registryBuilder.add(Registries.CONFIGURED_FEATURE, OCWorldgen::bootstrapConfiguredFeatures);
 		registryBuilder.add(Registries.PLACED_FEATURE, OCWorldgen::bootstrapPlacedFeatures);
-		registryBuilder.add(Registries.ENCHANTMENT, OCEnchantments::bootstrap);
+		//? >= 1.21 {
+		/^registryBuilder.add(Registries.ENCHANTMENT, OCEnchantments::bootstrap);
+		^///?}
 	}
 }
-//? }
+*///? }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.Arrays;
+/*import java.util.Arrays;
 import java.util.Optional;
 
 import com.macuguita.obese_crops.ObeseCrops;
@@ -342,4 +342,4 @@ public class OCModelProvider extends FabricModelProvider {
 		), Variant.variant().with(VariantProperties.MODEL, idCore).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 }
-//? }
+*///? }

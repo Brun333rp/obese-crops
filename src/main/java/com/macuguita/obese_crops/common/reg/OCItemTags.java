@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,8 @@ import net.minecraft.world.item.Item;
 
 public final class OCItemTags {
 
+	private OCItemTags() {}
+
 	public static final TagKey<Item> SCYTHES = createTag("scythes");
 	public static final TagKey<Item> SCYTHE_ENCHANTABLE = createTag("scythe_enchantable");
 	public static final TagKey<Item> THIN_LOGS = createTag("thin_logs");
@@ -46,6 +48,12 @@ public final class OCItemTags {
 	}
 
 	private static TagKey<Item> createCommonTag(String name) {
-		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
+		return TagKey.create(Registries.ITEM,
+				//? >= 1.21 {
+				/*ResourceLocation.fromNamespaceAndPath(
+				*///?} else {
+				new ResourceLocation(
+				//?}
+				"c", name));
 	}
 }

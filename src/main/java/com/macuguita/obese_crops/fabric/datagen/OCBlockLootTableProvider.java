@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 macuguita
+ * Copyright (c) 2026 macuguita
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.concurrent.CompletableFuture;
+/*import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.block.ObeseCropBlock;
 import com.macuguita.obese_crops.common.reg.OCObjects;
@@ -49,8 +49,16 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
 public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 
-	protected OCBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-		super(dataOutput, registryLookup);
+	protected OCBlockLootTableProvider(FabricDataOutput dataOutput
+									   //? >= 1.21 {
+									   /^, CompletableFuture<HolderLookup.Provider> registryLookup
+									   ^///?}
+	) {
+		super(dataOutput
+				//? >= 1.21 {
+				/^, registryLookup
+				^///?}
+		);
 	}
 
 	@Override
@@ -112,4 +120,4 @@ public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 		);
 	}
 }
-//? }
+*///? }
