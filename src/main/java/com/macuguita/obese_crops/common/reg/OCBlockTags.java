@@ -30,8 +30,6 @@ import net.minecraft.world.level.block.Block;
 
 public final class OCBlockTags {
 
-	private OCBlockTags() {}
-
 	public static final TagKey<Block> OBESE_CROP = createTag("obese_crop");
 	public static final TagKey<Block> DOUBLE_OBESE_CROP = createTag("double_obese_crop");
 	public static final TagKey<Block> SCYTHE_MINABLE = createTag("mineable/scythe");

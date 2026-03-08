@@ -1,3 +1,7 @@
+1.0.4
+- Added support for 1.20.1 [#4](https://github.com/macuguita/obese-crops/pull/5)
+- Fixed some problems with scythe pulling
+---
 1.0.3
 - Added french [#4](https://github.com/macuguita/obese-crops/pull/4)
 - Added andalûh

@@ -22,9 +22,9 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
-import com.macuguita.lib.platform.registry.GuitaRegistry;
-import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -37,8 +37,6 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
 public final class OCCreativeTabs {
 
-	private OCCreativeTabs() {}
-
 	public static final GuitaRegistry<CreativeModeTab> ITEM_GROUPS = GuitaRegistries.create(BuiltInRegistries.CREATIVE_MODE_TAB, ObeseCrops.MOD_ID);
 
 	public static final GuitaRegistryEntry<CreativeModeTab> GW_TAB = ITEM_GROUPS.register(ObeseCrops.MOD_ID, () ->
@@ -49,16 +47,16 @@ public final class OCCreativeTabs {
 								OCObjects.ITEMS.stream().map(block -> block.get().getDefaultInstance()).forEach(output::accept);
 								var bountifulReapEnchantment =
 										//? >= 1.21 {
-										/*itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP);
-										*///?} else {
-										OCEnchantments.BOUNTIFUL_REAP.get();
-										//?}
+										itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP);
+										//?} else {
+										/*OCEnchantments.BOUNTIFUL_REAP.get();
+										*///?}
 								int bountifulReapMaxLevel =
 										//? >= 1.21 {
-										/*itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP).value().definition().maxLevel();
-										*///?} else {
-										OCEnchantments.BOUNTIFUL_REAP.get().getMaxLevel();
-										//?}
+										itemDisplayParameters.holders().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(OCEnchantments.BOUNTIFUL_REAP).value().definition().maxLevel();
+										//?} else {
+										/*OCEnchantments.BOUNTIFUL_REAP.get().getMaxLevel();
+										*///?}
 								output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(bountifulReapEnchantment, bountifulReapMaxLevel)));
 							}
 					).build());

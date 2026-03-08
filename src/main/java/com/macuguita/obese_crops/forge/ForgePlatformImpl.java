@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.forge;
 
 //? forge {
-import com.google.common.collect.Lists;
+/*import com.google.common.collect.Lists;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.Platform;
 import com.macuguita.obese_crops.mixin.FireBlockAccessor;
@@ -212,4 +212,4 @@ public class ForgePlatformImpl implements Platform {
 				});
     }
 }
-//?}
+*///?}

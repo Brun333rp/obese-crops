@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-/*import java.util.Locale;
+import java.util.Locale;
 
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.reg.OCEnchantments;
@@ -42,32 +42,32 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 
 //? >= 1.21 {
-/^import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceKey;
-^///?} else {
-import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
-//?}
+//?} else {
+/*import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+*///?}
 
 public class OCLangProvider extends FabricLanguageProvider {
 
 	public OCLangProvider(FabricDataOutput dataOutput
 						  //? >= 1.21 {
-						  /^, CompletableFuture<HolderLookup.Provider> registryLookup
-						  ^///?}
+						  , CompletableFuture<HolderLookup.Provider> registryLookup
+						  //?}
 	) {
 		super(dataOutput, "en_us"
 				//? >= 1.21 {
-				/^, registryLookup
-				^///?}
+				, registryLookup
+				//?}
 		);
 	}
 
 	@Override
 	public void generateTranslations(
 			//? >= 1.21 {
-			/^HolderLookup.Provider wrapperLookup,
-			^///?}
+			HolderLookup.Provider wrapperLookup,
+			//?}
 			TranslationBuilder translationBuilder) {
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_APPLE.get());
 		generateBlockTranslations(translationBuilder, OCObjects.OBESE_BEETROOT.get());
@@ -88,16 +88,16 @@ public class OCLangProvider extends FabricLanguageProvider {
 
 		OCObjects.SCYTHE_ITEMS.stream().forEach(item -> generateItemTranslations(translationBuilder, item.get()));
 		translationBuilder.add("itemGroup." + ObeseCrops.MOD_ID + "." + ObeseCrops.MOD_ID, "Obese Crops");
-		generateEnchantmentTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP/^? < 1.21 {^/.get()/^?}^/);
-		generateEnchantmentDescriptionTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP/^? < 1.21 {^/.get()/^?}^/, "Allows you scythe to reap in a bigger area.");
+		generateEnchantmentTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP/*? < 1.21 {*//*.get()*//*?}*/);
+		generateEnchantmentDescriptionTranslations(translationBuilder, OCEnchantments.BOUNTIFUL_REAP/*? < 1.21 {*//*.get()*//*?}*/, "Allows you scythe to reap in a bigger area.");
 		generateItemTagTranslations(translationBuilder, OCItemTags.SCYTHES);
 		generateItemTagTranslations(translationBuilder, OCItemTags.SCYTHE_ENCHANTABLE);
 		generateItemTagTranslations(translationBuilder, OCItemTags.THIN_LOGS);
 		generateItemTagTranslations(translationBuilder, OCItemTags.FLOWERING_OAK_LOGS);
 		generateItemTagTranslations(translationBuilder, OCItemTags.FLOWERING_LEAVES);
 		//? < 1.21 {
-		generateEntityAttributeTranslations(translationBuilder, OCEntityAttributes.PULLING_SPEED.get());
-		//?}
+		/*generateEntityAttributeTranslations(translationBuilder, OCEntityAttributes.PULLING_SPEED.get());
+		*///?}
 	}
 
 	private String capitalizeString(String string) {
@@ -126,47 +126,47 @@ public class OCLangProvider extends FabricLanguageProvider {
 
 	private void generateEnchantmentTranslations(TranslationBuilder translationBuilder,
 												 //? >= 1.21 {
-												 /^ResourceKey<Enchantment>
-												 ^///?} else {
-												 Enchantment
-												 //?}
+												 ResourceKey<Enchantment>
+												 //?} else {
+												 /*Enchantment
+												 *///?}
 														 enchantment) {
 		//? >= 1.21 {
-		/^String temp = capitalizeString(enchantment.location().getPath().replace("_", " "));
+		String temp = capitalizeString(enchantment.location().getPath().replace("_", " "));
 		translationBuilder.add("enchantment." + enchantment.location().getNamespace() + "." + enchantment.location().getPath(), temp);
-		^///?} else {
-		String temp = capitalizeString(BuiltInRegistries.ENCHANTMENT.getKey(enchantment).getPath().replace("_", " "));
+		//?} else {
+		/*String temp = capitalizeString(BuiltInRegistries.ENCHANTMENT.getKey(enchantment).getPath().replace("_", " "));
 		translationBuilder.add(enchantment, temp);
-		//?}
+		*///?}
 	}
 
 	private void generateEnchantmentDescriptionTranslations(TranslationBuilder translationBuilder,
 															//? >= 1.21 {
-															/^ResourceKey<Enchantment>
-															^///?} else {
-															Enchantment
-																	//?}
+															ResourceKey<Enchantment>
+															//?} else {
+															/*Enchantment
+																	*///?}
 																	enchantment, String description) {
 		//? >= 1.21 {
-		/^ResourceLocation rl = enchantment.location();
-		^///?} else {
-		ResourceLocation rl = BuiltInRegistries.ENCHANTMENT.getKey(enchantment);
-		//?}
+		ResourceLocation rl = enchantment.location();
+		//?} else {
+		/*ResourceLocation rl = BuiltInRegistries.ENCHANTMENT.getKey(enchantment);
+		*///?}
 		translationBuilder.add("enchantment." + rl.getNamespace() + "." + rl.getPath() + ".desc", description);
 	}
 
 	//? < 1.21 {
-	private void generateEntityAttributeTranslations(TranslationBuilder translationBuilder, Attribute attribute) {
+	/*private void generateEntityAttributeTranslations(TranslationBuilder translationBuilder, Attribute attribute) {
 		String path = BuiltInRegistries.ATTRIBUTE.getKey(attribute).getPath();
 		String afterDot = path.substring(path.lastIndexOf(".") + 1);
 		String temp = capitalizeString(afterDot.replace("_", " "));
 		translationBuilder.add(attribute, temp);
 	}
-	//?}
+	*///?}
 
 	private void generateItemTagTranslations(TranslationBuilder translationBuilder, TagKey<Item> itemTag) {
 		String temp = capitalizeString(itemTag.location().getPath().replace("_", " "));
 		translationBuilder.add(itemTag.location(), temp);
 	}
 }
-*///? }
+//? }

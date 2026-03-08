@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-/*import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.reg.OCBlockTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
@@ -79,7 +79,7 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addElement(OCObjects.OBESE_GOLDEN_APPLE.getId());
 		getOrCreateRawBuilder(OCBlockTags.SCYTHE_WEEDS)
 				.addOptionalTag(BlockTags.FLOWERS.location())
-				.addElement(getRes(Blocks./^? >= 1.21 {^//^SHORT_GRASS^//^?} else {^/GRASS/^?}^/))
+				.addElement(getRes(Blocks./*? >= 1.21 {*/SHORT_GRASS/*?} else {*//*GRASS*//*?}*/))
 				.addElement(getRes(Blocks.FERN))
 				.addElement(getRes(Blocks.DEAD_BUSH))
 				.addElement(getRes(Blocks.VINE))
@@ -109,4 +109,4 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 		return BuiltInRegistries.BLOCK.getKey(block);
 	}
 }
-*///? }
+//? }

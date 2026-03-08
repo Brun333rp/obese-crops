@@ -108,7 +108,7 @@ public class AppleBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*/, boolean isClient /*?}*/) {
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state /*? < 1.21 {*//*, boolean isClient *//*?}*/) {
 		return state.getValue(AGE) < MAX_AGE;
 	}
 
@@ -141,28 +141,28 @@ public class AppleBlock extends Block implements BonemealableBlock {
 
 	@Override
 	//? >= 1.21 {
-	/*protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-	*///?} else {
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-	//?}
+	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+	//?} else {
+	/*public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	*///?}
 		if (state.getValue(AGE) == MAX_AGE) {
 			level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_ALL);
 			Block.popResourceFromFace(level, pos, Direction.DOWN, new ItemStack(Items.APPLE, 1));
 			return InteractionResult.SUCCESS;
 		}
 		//? >= 1.21 {
-		/*return super.useWithoutItem(state, level, pos, player, hit);
-		*///?} else {
-		return super.use(state, level, pos, player, hand, hit);
-		//?}
+		return super.useWithoutItem(state, level, pos, player, hit);
+		//?} else {
+		/*return super.use(state, level, pos, player, hand, hit);
+		*///?}
 	}
 
 	@Override
 	//? >= 1.21 {
-	/*protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
-	*///?} else {
-	public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
-	//?}
+	protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+	//?} else {
+	/*public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+	*///?}
 		return false;
 	}
 

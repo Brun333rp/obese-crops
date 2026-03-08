@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.forge;
 
 //? forge {
-import com.macuguita.obese_crops.ObeseCrops;
+/*import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.client.ObeseCropsClient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -54,4 +54,4 @@ public class ForgeEntrypoint {
 		ObeseCrops.commonInit();
 	}
 }
-//?}
+*///?}

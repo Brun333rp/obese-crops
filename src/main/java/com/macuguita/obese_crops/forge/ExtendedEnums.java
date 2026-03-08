@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.forge;
 
 //? forge {
-import com.macuguita.obese_crops.common.item.ScytheItem;
+/*import com.macuguita.obese_crops.common.item.ScytheItem;
 
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
@@ -31,4 +31,4 @@ public final class ExtendedEnums {
 
 	public static final EnchantmentCategory SCYTHES = EnchantmentCategory.create("OBESE_CROPS_SCYTHE", (item) -> item instanceof ScytheItem);
 }
-//?}
+*///?}

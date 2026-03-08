@@ -41,8 +41,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class ObeseCropFoliageBlock extends BushBlock {
 
 	//? >= 1.21 {
-	/*public static final MapCodec<ObeseCropFoliageBlock> CODEC = simpleCodec(ObeseCropFoliageBlock::new);
-	*///?}
+	public static final MapCodec<ObeseCropFoliageBlock> CODEC = simpleCodec(ObeseCropFoliageBlock::new);
+	//?}
 	protected static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
 
 	public ObeseCropFoliageBlock(Properties settings) {
@@ -69,9 +69,9 @@ public class ObeseCropFoliageBlock extends BushBlock {
 	}
 
 	//? >= 1.21 {
-	/*@Override
+	@Override
 	protected MapCodec<? extends BushBlock> codec() {
 		return CODEC;
 	}
-	*///?}
+	//?}
 }

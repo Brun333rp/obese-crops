@@ -24,9 +24,9 @@ package com.macuguita.obese_crops.common.reg;
 
 //? < 1.21 {
 
-import com.macuguita.lib.platform.registry.GuitaRegistries;
-import com.macuguita.lib.platform.registry.GuitaRegistry;
-import com.macuguita.lib.platform.registry.GuitaRegistryEntry;
+/*import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -36,8 +36,6 @@ import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import java.util.UUID;
 
 public final class OCEntityAttributes {
-
-	private OCEntityAttributes() {}
 
 	public static final GuitaRegistry<Attribute> ATTRIBUTES = GuitaRegistries.create(BuiltInRegistries.ATTRIBUTE, ObeseCrops.MOD_ID);
 
@@ -53,4 +51,4 @@ public final class OCEntityAttributes {
 	}
 
 }
-//?}
+*///?}

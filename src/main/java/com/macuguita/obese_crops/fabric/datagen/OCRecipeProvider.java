@@ -24,7 +24,7 @@ package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
 
-/*import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import com.macuguita.obese_crops.common.item.ScytheItem;
@@ -33,16 +33,16 @@ import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.mixin.IngredientAccessor;
 
 //? >=1.21 {
-/^import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-^///?} else {
-import net.minecraft.advancements.CriterionTriggerInstance;
+//?} else {
+/*import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.recipes.FinishedRecipe;
-//?}
+*///?}
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -58,17 +58,17 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 public class OCRecipeProvider extends FabricRecipeProvider {
 
 
-	public OCRecipeProvider(FabricDataOutput output/^?>=1.21 {^//^, CompletableFuture<HolderLookup.Provider> registriesFuture^//^?}^/) {
-		super(output /^?>=1.21 {^//^,registriesFuture^//^?}^/);
+	public OCRecipeProvider(FabricDataOutput output/*?>=1.21 {*/, CompletableFuture<HolderLookup.Provider> registriesFuture/*?}*/) {
+		super(output /*?>=1.21 {*/,registriesFuture/*?}*/);
 	}
 
 	@Override
 	public void buildRecipes(
 	//? >=1.21 {
-		/^RecipeOutput recipeOutput
-	^///?} else {
-		Consumer<FinishedRecipe> recipeOutput
-	//?}
+		RecipeOutput recipeOutput
+	//?} else {
+		/*Consumer<FinishedRecipe> recipeOutput
+	*///?}
 	) {
 		OCObjects.SCYTHE_ITEMS.getEntries().forEach(entry -> {
 			ScytheItem scythe = (ScytheItem) entry.get();
@@ -120,27 +120,27 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 
 	private
 	//? >=1.21 {
-	/^Criterion
-	^///?} else {
-	CriterionTriggerInstance
-	//?}
+	Criterion
+	//?} else {
+	/*CriterionTriggerInstance
+	*///?}
 	getIngredientCriterion(Ingredient ingredient) {
 		for (Ingredient.Value value : ((IngredientAccessor) ingredient).obese_crops$getValues()) {
 			//? >=1.21 {
-			/^if (value instanceof Ingredient.TagValue(TagKey<Item> tag)) {
+			if (value instanceof Ingredient.TagValue(TagKey<Item> tag)) {
 				return has(tag);
 			}
 			if (value instanceof Ingredient.ItemValue(ItemStack item)) {
 				return has(item.getItem());
 			}
-			^///?} else {
-			if (value instanceof Ingredient.TagValue tag) {
+			//?} else {
+			/*if (value instanceof Ingredient.TagValue tag) {
 				return has(tag.tag);
 			}
 			if (value instanceof Ingredient.ItemValue item) {
 				return has(item.item.getItem());
 			}
-			//?}
+			*///?}
 		}
 
 		throw new IllegalStateException("Ingredient has no values");
@@ -148,10 +148,10 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 
 	private void generateObeseBlockDeconstruction(
 			//? >=1.21 {
-			/^RecipeOutput recipeOutput,
-			^///?} else {
-			Consumer<FinishedRecipe> recipeOutput,
-			//?}
+			RecipeOutput recipeOutput,
+			//?} else {
+			/*Consumer<FinishedRecipe> recipeOutput,
+			*///?}
 			ItemLike obeseBlock,
 			ItemLike ozempicCrop
 	) {
@@ -162,4 +162,4 @@ public class OCRecipeProvider extends FabricRecipeProvider {
 				.save(recipeOutput);
 	}
 }
-*///? }
+//? }

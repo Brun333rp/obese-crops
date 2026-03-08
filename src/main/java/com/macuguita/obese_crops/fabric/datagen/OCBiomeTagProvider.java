@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-/*import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.reg.OCBiomeTags;
 
@@ -34,10 +34,10 @@ import net.minecraft.world.level.biome.Biome;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 //? >= 1.21 {
-/^import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
-^///?} else {
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
-//?}
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+//?} else {
+/*import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
+*///?}
 
 public class OCBiomeTagProvider extends FabricTagProvider<Biome> {
 
@@ -48,7 +48,7 @@ public class OCBiomeTagProvider extends FabricTagProvider<Biome> {
 	@Override
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		tag(OCBiomeTags.FLOWERING_OAK_TREE)
-				.addOptionalTag(ConventionalBiomeTags./^? >= 1.21 {^//^IS_FOREST^//^?} else {^/FOREST/^?}^/.location());
+				.addOptionalTag(ConventionalBiomeTags./*? >= 1.21 {*/IS_FOREST/*?} else {*//*FOREST*//*?}*/.location());
 	}
 }
-*///? }
+//? }

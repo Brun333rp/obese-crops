@@ -23,7 +23,7 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-/*import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
@@ -46,7 +46,7 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		OCObjects.SCYTHE_ITEMS.stream().forEach(item -> getOrCreateRawBuilder(OCItemTags.SCYTHES).addElement(item.getId()));
 		//? >= 1.21 {
-		/^getOrCreateRawBuilder(OCItemTags.SCYTHE_ENCHANTABLE)
+		getOrCreateRawBuilder(OCItemTags.SCYTHE_ENCHANTABLE)
 				.addTag(OCItemTags.SCYTHES.location());
 		getOrCreateRawBuilder(ItemTags.WEAPON_ENCHANTABLE)
 				.addOptionalTag(OCItemTags.SCYTHES.location());
@@ -58,7 +58,7 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 				.addOptionalTag(OCItemTags.SCYTHES.location());
 		getOrCreateRawBuilder(ItemTags.VANISHING_ENCHANTABLE)
 				.addOptionalTag(OCItemTags.SCYTHES.location());
-		^///?}
+		//?}
 
 		getOrCreateRawBuilder(OCItemTags.FLOWERING_LEAVES)
 				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId());
@@ -81,10 +81,10 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 				.addOptionalTag(ItemTags.AXES.location());
 
 		//? >= 1.21 {
-		/^// TODO: mixin into chicken to add this to food under 1.21
+		// TODO: mixin into chicken to add this to food under 1.21
 		getOrCreateRawBuilder(ItemTags.CHICKEN_FOOD)
 				.addOptionalTag(OCObjects.APPLE_SEED.getId());
-		^///?}
+		//?}
 	}
 }
-*///? }
+//? }

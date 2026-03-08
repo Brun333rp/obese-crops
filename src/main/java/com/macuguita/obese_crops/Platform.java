@@ -23,14 +23,14 @@
 package com.macuguita.obese_crops;
 
 //? fabric {
-/*import com.macuguita.obese_crops.fabric.FabricPlatformImpl;
-*///? }
+import com.macuguita.obese_crops.fabric.FabricPlatformImpl;
+//? }
 //? neoforge {
 /*import com.macuguita.obese_crops.neoforge.NeoForgePlatformImpl;
  *///? }
 //? forge {
-import com.macuguita.obese_crops.forge.ForgePlatformImpl;
-//? }
+/*import com.macuguita.obese_crops.forge.ForgePlatformImpl;
+*///? }
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -48,14 +48,14 @@ import net.minecraft.world.level.block.Blocks;
 public interface Platform {
 
     //? fabric {
-    /*Platform INSTANCE = new FabricPlatformImpl();
-    *///?}
+    Platform INSTANCE = new FabricPlatformImpl();
+    //?}
     //? neoforge {
     /*Platform INSTANCE = new NeoForgePlatformImpl();
     *///?}
     //? forge {
-    Platform INSTANCE = new ForgePlatformImpl();
-    //?}
+    /*Platform INSTANCE = new ForgePlatformImpl();
+    *///?}
 
 
     boolean isModLoaded(String modid);
