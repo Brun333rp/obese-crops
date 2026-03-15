@@ -57,6 +57,8 @@ import net.minecraft.world.level.block.grower.TreeGrower;
 
 public final class OCObjects {
 
+	private OCObjects() {}
+
 	public static final GuitaRegistry<Block> BLOCKS = GuitaRegistries.create(BuiltInRegistries.BLOCK, ObeseCrops.MOD_ID);
 	public static final GuitaRegistry<Item> ITEMS = GuitaRegistries.create(BuiltInRegistries.ITEM, ObeseCrops.MOD_ID);
 

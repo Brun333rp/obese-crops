@@ -20,17 +20,25 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.fabric;
+package com.macuguita.obese_crops.common.extendedenums;
 
-//? < 1.21 && fabric {
-
+//? < 1.21 {
 /*import net.minecraft.world.item.enchantment.EnchantmentCategory;
+
+//? forge || neoforge {
+/^import com.macuguita.obese_crops.common.item.ScytheItem;
+^///?}
 
 public final class ObeseCropsEnchantmentCategories {
 
 	private ObeseCropsEnchantmentCategories() {}
 
-	public static final EnchantmentCategory SCYTHES = EnchantmentCategory.valueOf("OBESE_CROPS_SCYTHE");
+	public static final EnchantmentCategory SCYTHES =
+			//? fabric {
+			EnchantmentCategory.valueOf("OBESE_CROPS_SCYTHE");
+			//?} else forge || neoforge {
+			/^EnchantmentCategory.create("OBESE_CROPS_SCYTHE", (item) -> item instanceof ScytheItem);
+			^///?}
 
 }
 *///?}

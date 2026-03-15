@@ -36,6 +36,8 @@ import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 
 public final class OCEnchantmentComponents {
 
+	private OCEnchantmentComponents() {}
+
 	public static final GuitaRegistry<DataComponentType<?>> ENCHANTMENT_COMPONENTS =
 			GuitaRegistries.create(
 					BuiltInRegistries.ENCHANTMENT_EFFECT_COMPONENT_TYPE,

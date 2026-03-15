@@ -28,7 +28,7 @@ import com.macuguita.obese_crops.common.reg.OCWorldgen;
 
 import net.fabricmc.api.ModInitializer;
 
-public class FabricEntrypoint implements ModInitializer {
+public final class FabricEntrypoint implements ModInitializer {
 
     @Override
     public void onInitialize() {

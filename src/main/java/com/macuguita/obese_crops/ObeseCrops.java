@@ -49,7 +49,9 @@ import com.macuguita.obese_crops.common.reg.OCEnchantmentComponents;
 /*import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
 *///?}
 
-public class ObeseCrops {
+public final class ObeseCrops {
+
+	private ObeseCrops() {}
 
     public static final String MOD_ID = "obese_crops";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -85,12 +87,7 @@ public class ObeseCrops {
     }
 
     public static ResourceLocation id(String name) {
-        return
-				//? >= 1.21 {
-				ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
-				//?} else {
-				/*new ResourceLocation(MOD_ID, name);
-				*///?}
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
 
     public static void init() {

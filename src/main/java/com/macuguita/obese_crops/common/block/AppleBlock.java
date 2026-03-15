@@ -57,7 +57,7 @@ public class AppleBlock extends Block implements BonemealableBlock {
 
 	public static final int MAX_AGE = 2;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
-	public static final VoxelShape[] VOXEL_SHAPE = {
+	private static final VoxelShape[] VOXEL_SHAPE = {
 			Block.box(7, 12, 7, 9, 16, 9),
 			Block.box(6, 10, 6, 10, 16, 10),
 			Block.box(5, 7, 5, 11, 16, 11)

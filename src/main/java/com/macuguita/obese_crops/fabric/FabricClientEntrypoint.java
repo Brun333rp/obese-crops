@@ -28,7 +28,7 @@ import com.macuguita.obese_crops.client.ObeseCropsClient;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class FabricClientEntrypoint implements ClientModInitializer {
+public final class FabricClientEntrypoint implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {

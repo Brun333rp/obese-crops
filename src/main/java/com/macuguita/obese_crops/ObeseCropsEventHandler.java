@@ -22,6 +22,8 @@
 
 package com.macuguita.obese_crops;
 
-public class ObeseCropsEventHandler {
+public final class ObeseCropsEventHandler {
+
+	private ObeseCropsEventHandler() {}
 
 }

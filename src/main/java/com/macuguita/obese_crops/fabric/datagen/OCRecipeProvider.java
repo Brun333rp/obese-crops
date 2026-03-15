@@ -24,7 +24,6 @@ package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import com.macuguita.obese_crops.common.item.ScytheItem;
@@ -32,17 +31,6 @@ import com.macuguita.obese_crops.common.reg.OCItemTags;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.mixin.IngredientAccessor;
 
-//? >=1.21 {
-import net.minecraft.advancements.Criterion;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-//?} else {
-/*import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.data.recipes.FinishedRecipe;
-*///?}
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -53,6 +41,20 @@ import net.minecraft.world.level.block.Blocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+
+//? >=1.21 {
+import java.util.concurrent.CompletableFuture;
+
+import net.minecraft.advancements.Criterion;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+//?} else {
+/*import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.data.recipes.FinishedRecipe;
+*///?}
 
 @SuppressWarnings("rawtypes")
 public class OCRecipeProvider extends FabricRecipeProvider {

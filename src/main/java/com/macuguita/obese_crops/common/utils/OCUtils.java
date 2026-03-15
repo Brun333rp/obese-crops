@@ -27,7 +27,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class OCUtils {
+public final class OCUtils {
+
+	private OCUtils() {}
 
 	public static VoxelShape rotateVoxelShape(VoxelShape shape, Direction.Axis axis, int degrees) {
 		int times = ((degrees % 360) + 360) % 360 / 90;

@@ -37,6 +37,8 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
 public final class OCCreativeTabs {
 
+	private OCCreativeTabs() {}
+
 	public static final GuitaRegistry<CreativeModeTab> ITEM_GROUPS = GuitaRegistries.create(BuiltInRegistries.CREATIVE_MODE_TAB, ObeseCrops.MOD_ID);
 
 	public static final GuitaRegistryEntry<CreativeModeTab> GW_TAB = ITEM_GROUPS.register(ObeseCrops.MOD_ID, () ->

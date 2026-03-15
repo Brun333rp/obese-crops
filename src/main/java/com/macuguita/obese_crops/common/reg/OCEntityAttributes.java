@@ -23,7 +23,6 @@
 package com.macuguita.obese_crops.common.reg;
 
 //? < 1.21 {
-
 /*import com.macuguita.lib.reg.GuitaRegistries;
 import com.macuguita.lib.reg.GuitaRegistry;
 import com.macuguita.lib.reg.GuitaRegistryEntry;
@@ -37,6 +36,8 @@ import java.util.UUID;
 
 public final class OCEntityAttributes {
 
+	private OCEntityAttributes() {}
+
 	public static final GuitaRegistry<Attribute> ATTRIBUTES = GuitaRegistries.create(BuiltInRegistries.ATTRIBUTE, ObeseCrops.MOD_ID);
 
 	public static final UUID BASE_PULLING_SPEED_UUID = UUID.fromString("a51f885d-0416-444c-bfeb-5c5eac9e8115");
@@ -49,6 +50,5 @@ public final class OCEntityAttributes {
 	public static void init() {
 		ATTRIBUTES.init();
 	}
-
 }
 *///?}

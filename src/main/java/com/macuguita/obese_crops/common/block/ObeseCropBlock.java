@@ -72,7 +72,7 @@ public class ObeseCropBlock extends HorizontalDirectionalBlock implements Boneme
 	public static final MapCodec<ObeseCropBlock> CODEC = simpleCodec(ObeseCropBlock::new);
 	//?}
 	public static final IntegerProperty CARVED = IntegerProperty.create("carved", 0, 3);
-	public static final VoxelShape[] VOXEL_SHAPES = {
+	private static final VoxelShape[] VOXEL_SHAPES = {
 			Shapes.block(),
 			Shapes.or(
 					Block.box(8, 0, 0, 16, 16, 8),

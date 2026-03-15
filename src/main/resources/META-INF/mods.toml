@@ -15,9 +15,6 @@ enumExtensions="META-INF/enumextensions.json"
 [[mixins]]
 config = "obese_crops.mixins.json"
 
-[[accessTransformers]]
-file="${atFile}"
-
 [[dependencies.obese_crops]]
 modId = "forge"
 mandatory = true

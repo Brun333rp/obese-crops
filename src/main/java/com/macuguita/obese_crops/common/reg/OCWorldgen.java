@@ -72,6 +72,8 @@ import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 
 public final class OCWorldgen {
 
+	private OCWorldgen() {}
+
     public static final GuitaRegistry<TrunkPlacerType<?>> TRUNK_PLACER = GuitaRegistries.create(BuiltInRegistries.TRUNK_PLACER_TYPE, ObeseCrops.MOD_ID);
     public static final GuitaRegistry<TreeDecoratorType<?>> TREE_DECORATOR = GuitaRegistries.create(BuiltInRegistries.TREE_DECORATOR_TYPE, ObeseCrops.MOD_ID);
 

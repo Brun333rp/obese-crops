@@ -155,6 +155,7 @@ stonecutter {
         replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
         replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
         replace("BootstapContext", "BootstrapContext")
+        replace("new ResourceLocation", "ResourceLocation.fromNamespaceAndPath")
     }
 }
 

@@ -23,11 +23,8 @@
 package com.macuguita.obese_crops.neoforge;
 
 //? neoforge {
-
 /*import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.client.ObeseCropsClient;
-import com.macuguita.obese_crops.common.resourcereloader.ObeseMapResourceReloadListener;
-import net.minecraft.resources.ResourceKey;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -35,9 +32,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
 @Mod(ObeseCrops.MOD_ID)
 public class NeoforgeEntrypoint {

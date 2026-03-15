@@ -29,7 +29,7 @@ package com.macuguita.obese_crops.fabric;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 
-public class ObeseCropsASM implements Runnable{
+public final class ObeseCropsASM implements Runnable {
 
 	public static final String ENCHANTMENT_CATEGORY_SCYTHE = "OBESE_CROPS_SCYTHE";
 

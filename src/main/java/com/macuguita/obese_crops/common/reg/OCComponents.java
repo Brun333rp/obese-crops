@@ -34,6 +34,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 
 public final class OCComponents {
 
+	private OCComponents() {}
+
 	public static final GuitaRegistry<DataComponentType<?>> COMPONENTS = GuitaRegistries.create(BuiltInRegistries.DATA_COMPONENT_TYPE, ObeseCrops.MOD_ID);
 
 	public static final GuitaRegistryEntry<DataComponentType<Float>> PULLING_SPEED = COMPONENTS.register("pulling_speed",

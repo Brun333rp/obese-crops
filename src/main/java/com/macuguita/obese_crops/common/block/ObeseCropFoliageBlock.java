@@ -43,7 +43,7 @@ public class ObeseCropFoliageBlock extends BushBlock {
 	//? >= 1.21 {
 	public static final MapCodec<ObeseCropFoliageBlock> CODEC = simpleCodec(ObeseCropFoliageBlock::new);
 	//?}
-	protected static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
+	private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
 
 	public ObeseCropFoliageBlock(Properties settings) {
 		super(settings

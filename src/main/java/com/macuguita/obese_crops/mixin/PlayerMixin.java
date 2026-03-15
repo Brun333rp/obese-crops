@@ -50,7 +50,9 @@ import net.minecraft.world.item.SwordItem;
 import java.util.Optional;
 import com.macuguita.obese_crops.common.reg.OCComponents;
 //?} else {
-/*import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+/*import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.macuguita.obese_crops.common.reg.OCEntityAttributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 *///?}
 
 @Mixin(Player.class)
@@ -58,6 +60,12 @@ public abstract class PlayerMixin extends LivingEntity {
 
 	protected PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
 		super(entityType, level);
+	}
+
+	@Unique
+	private void pullEntity(Entity entityHit, double strength) {
+		entityHit.setDeltaMovement(this.position().subtract(entityHit.position()).scale(strength));
+		entityHit.hurtMarked = true;
 	}
 
 	@Definition(id = "crit", method = "Lnet/minecraft/world/entity/player/Player;crit(Lnet/minecraft/world/entity/Entity;)V")
@@ -82,20 +90,27 @@ public abstract class PlayerMixin extends LivingEntity {
 				Float pullingSpeed = itemStack.get(OCComponents.PULLING_SPEED.get());
 				float baseSpeed = Optional.ofNullable(pullingSpeed).orElse(0.0f);
 				strength = baseSpeed * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+				pullEntity(entityHit, strength);
 			}
 			//?} else {
-			/*var attribute = livingEntity.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
-			var modifier = attribute != null ? attribute.getModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID) : null;
-			Float pullingSpeed =modifier != null ? (float) modifier.getAmount() : null;
-			if (pullingSpeed != null) {
-				strength = pullingSpeed  * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+			/*var attribute = this.getAttributeValue(OCEntityAttributes.PULLING_SPEED.get());
+			if (attribute > 0.01) {
+				strength = attribute * (float) (1.0 - livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+				pullEntity(entityHit, strength);
 			}
-			strength /= 5;
 			*///?}
 		}
-		entityHit.setDeltaMovement(this.position().subtract(entityHit.position()).scale(strength));
-		entityHit.hurtMarked = true;
 	}
+
+	//? <1.21 {
+	/*@ModifyReturnValue(
+			method = "createAttributes",
+			at = @At("RETURN")
+	)
+	private static AttributeSupplier.Builder obese_crops$addDefaultAttribute(AttributeSupplier.Builder original) {
+		return original.add(OCEntityAttributes.PULLING_SPEED.get());
+	}
+	*///?}
 
 	//? fabric {
 	@Unique
@@ -118,7 +133,8 @@ public abstract class PlayerMixin extends LivingEntity {
 		return original || itemStack.getItem() instanceof ScytheItem;
 	}
 	//? } else {
-	/*@Unique
+	/*// I'm NOT using the event system for a simple mixin
+	@Unique
 	private static final String SWEEPING_TARGET =
 			//? neoforge
 			//"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z"

@@ -36,7 +36,11 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ObeseCropsClient {
+public final class ObeseCropsClient {
+
+	private ObeseCropsClient() {}
+
+	//TODO: fix this for versions on 1.20
     public static ItemDisplayContext mode = ItemDisplayContext.NONE;
 
     public static void init() {

@@ -82,8 +82,6 @@ configurations {
 }
 
 legacyForge {
-    accessTransformers.from(rootProject.file("src/main/resources/META-INF/accesstransformer+${property("deps.minecraft")}.cfg"))
-
     version = property("deps.forge_loader") as String
     validateAccessTransformers = true
 
@@ -148,6 +146,7 @@ stonecutter {
         replace("com.macuguita.lib.platform.registry", "com.macuguita.lib.reg")
         replace("BlockBehaviour.Properties.copy", "BlockBehaviour.Properties.ofFullCopy")
         replace("BootstapContext", "BootstrapContext")
+        replace("new ResourceLocation", "ResourceLocation.fromNamespaceAndPath")
     }
 }
 

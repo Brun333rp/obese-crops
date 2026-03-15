@@ -23,14 +23,12 @@
 package com.macuguita.obese_crops.fabric.datagen;
 
 //? fabric {
-import java.util.concurrent.CompletableFuture;
 
 import com.macuguita.obese_crops.common.block.ObeseCropBlock;
 import com.macuguita.obese_crops.common.reg.OCObjects;
 import com.macuguita.obese_crops.mixin.BlockLootSubProviderAccessor;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -46,6 +44,12 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+
+//? >= 1.21 {
+import java.util.concurrent.CompletableFuture;
+
+import net.minecraft.core.HolderLookup;
+//?}
 
 public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 

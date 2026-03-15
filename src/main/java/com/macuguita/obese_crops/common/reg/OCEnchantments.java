@@ -22,23 +22,32 @@
 
 package com.macuguita.obese_crops.common.reg;
 
-//? >= 1.21 {
 import com.macuguita.obese_crops.ObeseCrops;
+import net.minecraft.world.item.enchantment.Enchantment;
 
+//? >= 1.21 {
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
+//?} else {
+/*import com.macuguita.lib.reg.GuitaRegistries;
+import com.macuguita.lib.reg.GuitaRegistry;
+import com.macuguita.lib.reg.GuitaRegistryEntry;
+import com.macuguita.obese_crops.common.enchantment.BountifulReap;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+*///?}
 
 public final class OCEnchantments {
 
 	private OCEnchantments() {}
 
+	//? >= 1.21 {
 	public static final ResourceKey<Enchantment> BOUNTIFUL_REAP = key("bountiful_reap");
 
 	public static void bootstrap(BootstrapContext<Enchantment> context) {
@@ -75,27 +84,13 @@ public final class OCEnchantments {
 	public static void init() {
 
 	}
-}
-//?} else {
-/*import com.macuguita.lib.reg.GuitaRegistries;
-import com.macuguita.lib.reg.GuitaRegistry;
-
-import com.macuguita.lib.reg.GuitaRegistryEntry;
-import com.macuguita.obese_crops.ObeseCrops;
-
-import com.macuguita.obese_crops.common.enchantment.BountifulReap;
-
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.enchantment.Enchantment;
-
-public final class OCEnchantments {
-
-	private static final GuitaRegistry<Enchantment> ENCHANTMENTS = GuitaRegistries.create(BuiltInRegistries.ENCHANTMENT, ObeseCrops.MOD_ID);
+	//?} else {
+	/*private static final GuitaRegistry<Enchantment> ENCHANTMENTS = GuitaRegistries.create(BuiltInRegistries.ENCHANTMENT, ObeseCrops.MOD_ID);
 
 	public static final GuitaRegistryEntry<Enchantment> BOUNTIFUL_REAP = ENCHANTMENTS.register("bountiful_reap", BountifulReap::new);
 
 	public static void init() {
 		ENCHANTMENTS.init();
 	}
+	*///?}
 }
-*///?}
