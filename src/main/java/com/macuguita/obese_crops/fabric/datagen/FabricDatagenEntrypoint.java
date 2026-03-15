@@ -37,8 +37,6 @@ import com.macuguita.obese_crops.common.reg.OCEnchantments;
 
 public final class FabricDatagenEntrypoint implements DataGeneratorEntrypoint {
 
-	private FabricDatagenEntrypoint() {}
-
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();

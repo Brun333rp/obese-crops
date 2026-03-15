@@ -1,3 +1,6 @@
+1.0.5
+- Fixed some problems with the scythe pulling (again…) [#6](https://github.com/macuguita/obese-crops/issues/6)
+---
 1.0.4
 - Added support for 1.20.1 [#4](https://github.com/macuguita/obese-crops/pull/5)
 - Fixed some problems with scythe pulling
