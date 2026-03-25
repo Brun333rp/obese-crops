@@ -20,15 +20,25 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.forge;
+package com.macuguita.obese_crops.common.block;
 
-//? forge {
-/*import com.macuguita.obese_crops.common.item.ScytheItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
+public class ObeseAppleFoliageBlock extends ObeseCropFoliageBlock {
 
-public final class ExtendedEnums {
+	private static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 6, 11);
 
-	public static final EnchantmentCategory SCYTHES = EnchantmentCategory.create("OBESE_CROPS_SCYTHE", (item) -> item instanceof ScytheItem);
+	public ObeseAppleFoliageBlock(Properties settings) {
+		super(settings);
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return SHAPE;
+	}
 }
-*///?}

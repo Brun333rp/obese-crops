@@ -42,9 +42,11 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -55,6 +57,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.AttachedToLeavesDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
@@ -168,7 +171,9 @@ public final class OCWorldgen {
                         .setValue(ThinLogBlock.PROPERTY_BY_DIRECTION.get(Direction.DOWN), true)
                         .setValue(ThinLogBlock.PROPERTY_BY_DIRECTION.get(Direction.UP), true)),
                 new ThinTrunkPlacer(3, 11, 0, 0.618, 1.382, 0.381, 0.328),
-                BlockStateProvider.simple(OCObjects.FLOWERING_OAK_LEAVES.get()),
+                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+						.add(OCObjects.FLOWERING_OAK_LEAVES.get().defaultBlockState(), 1)
+						.add(OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get().defaultBlockState(), 1)),
                 new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4),
                 new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
         )

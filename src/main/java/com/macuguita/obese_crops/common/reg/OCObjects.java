@@ -32,8 +32,11 @@ import com.macuguita.lib.reg.GuitaRegistryEntry;
 import com.macuguita.obese_crops.ObeseCrops;
 import com.macuguita.obese_crops.common.block.AppleBlock;
 import com.macuguita.obese_crops.common.block.FloweringOakSaplingBlock;
+import com.macuguita.obese_crops.common.block.ObeseAppleFoliageBlock;
+import com.macuguita.obese_crops.common.block.ObeseCarrotFoliageBlock;
 import com.macuguita.obese_crops.common.block.ObeseCropBlock;
 import com.macuguita.obese_crops.common.block.ObeseCropFoliageBlock;
+import com.macuguita.obese_crops.common.block.ObesePotatoFoliageBlock;
 import com.macuguita.obese_crops.common.block.ThinLogBlock;
 import com.macuguita.obese_crops.common.item.ScytheItem;
 
@@ -80,14 +83,17 @@ public final class OCObjects {
 	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT = registerObeseCrop("obese_golden_carrot", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW));
 	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_APPLE = registerObeseCrop("obese_golden_apple", ObeseCropBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW));
 
+	public static final GuitaRegistryEntry<Block> OBESE_APPLE_FOLIAGE = registerFoliage("obese_apple_foliage", ObeseAppleFoliageBlock::new, BlockBehaviour.Properties.of());
 	public static final GuitaRegistryEntry<Block> OBESE_BEETROOT_FOLIAGE = registerFoliage("obese_beetroot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
-	public static final GuitaRegistryEntry<Block> OBESE_CARROT_FOLIAGE = registerFoliage("obese_carrot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
-	public static final GuitaRegistryEntry<Block> OBESE_POTATO_FOLIAGE = registerFoliage("obese_potato_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
-	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT_FOLIAGE = registerFoliage("obese_golden_carrot_foliage", ObeseCropFoliageBlock::new, BlockBehaviour.Properties.of());
+	public static final GuitaRegistryEntry<Block> OBESE_CARROT_FOLIAGE = registerFoliage("obese_carrot_foliage", ObeseCarrotFoliageBlock::new, BlockBehaviour.Properties.of());
+	public static final GuitaRegistryEntry<Block> OBESE_POTATO_FOLIAGE = registerFoliage("obese_potato_foliage", ObesePotatoFoliageBlock::new, BlockBehaviour.Properties.of());
+	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_APPLE_FOLIAGE = registerFoliage("obese_golden_apple_foliage", ObeseAppleFoliageBlock::new, BlockBehaviour.Properties.of());
+	public static final GuitaRegistryEntry<Block> OBESE_GOLDEN_CARROT_FOLIAGE = registerFoliage("obese_golden_carrot_foliage", ObeseCarrotFoliageBlock::new, BlockBehaviour.Properties.of());
 
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LOG = registerWithItem("flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor()), true));
 	public static final GuitaRegistryEntry<Block> STRIPPED_FLOWERING_OAK_LOG = registerWithItem("stripped_flowering_oak_log", () -> new ThinLogBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(Blocks.OAK_LOG.defaultMapColor())));
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LEAVES = registerWithItem("flowering_oak_leaves", () -> Blocks.leaves(SoundType.GRASS));
+	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_LEAVES_WITH_FLOWERS = registerWithItem("flowering_oak_leaves_with_flowers", () -> Blocks.leaves(SoundType.GRASS));
 	public static final GuitaRegistryEntry<Block> FLOWERING_OAK_SAPLING = registerWithItem("flowering_oak_sapling", () -> new FloweringOakSaplingBlock(
 			new TreeGrower(
 					"flowering_oak",

@@ -1,1 +1,3 @@
-- Fixed some problems with the scythe pulling (again…) [#6](https://github.com/macuguita/obese-crops/issues/6)
+- Updated textures
+- Fixed the loot table of flowering oak leaves not working
+- The flowering leaves block is now split into 2

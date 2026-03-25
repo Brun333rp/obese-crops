@@ -170,20 +170,12 @@ public class ScytheItem extends DiggerItem {
 					center.x + halfSize, center.y + 1.5, center.z + halfSize
 			);
 
-			double strength = 1.0D;
-			//? < 1.21 {
-			/*var attribute = player.getAttribute(OCEntityAttributes.PULLING_SPEED.get());
-			var modifier = attribute != null ? attribute.getModifier(OCEntityAttributes.BASE_PULLING_SPEED_UUID) : null;
-			*///?}
-			Float pullingSpeed =
+			double strength =
 					//? >= 1.21 {
-					itemStack.get(OCComponents.PULLING_SPEED.get());
+					itemStack.getOrDefault(OCComponents.PULLING_SPEED.get(), 0.1f);
 					//?} else {
-					/*modifier != null ? (float) modifier.getAmount() : null;
+					/*player.getAttributeValue(OCEntityAttributes.PULLING_SPEED.get());
 					*///?}
-			if (pullingSpeed != null) {
-				strength = pullingSpeed;
-			}
 			//? < 1.21 {
 			/*strength /= 5;
 			*///?}

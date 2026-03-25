@@ -61,23 +61,28 @@ public class OCModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-		createObeseModel(blockModelGenerators, OCObjects.OBESE_BEETROOT.get());
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_BEETROOT.get(), true, false);
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_POISONOUS_POTATO.get());
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_POTATO.get());
-		createObeseModel(blockModelGenerators, OCObjects.OBESE_APPLE.get(), true);
-		createObeseModel(blockModelGenerators, OCObjects.OBESE_CARROT.get(), true);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_APPLE.get(), true, false);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_CARROT.get(), true, true);
 		createObeseModel(blockModelGenerators, OCObjects.OBESE_COCOA.get());
-		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_CARROT.get(), true);
-		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_APPLE.get(), true);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_CARROT.get(), true, true);
+		createObeseModel(blockModelGenerators, OCObjects.OBESE_GOLDEN_APPLE.get(), true, false);
 
+		blockModelGenerators.createCrossBlock(OCObjects.OBESE_APPLE_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_BEETROOT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_CARROT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_POTATO_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
+		blockModelGenerators.createCrossBlock(OCObjects.OBESE_GOLDEN_APPLE_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 		blockModelGenerators.createCrossBlock(OCObjects.OBESE_GOLDEN_CARROT_FOLIAGE.get(), BlockModelGenerators.TintState.NOT_TINTED);
 
 		createThinLogBlock(blockModelGenerators, OCObjects.FLOWERING_OAK_LOG.get());
 		createThinLogBlock(blockModelGenerators, OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());
 		createFloweringLeavesBlock(blockModelGenerators, OCObjects.FLOWERING_OAK_LEAVES.get(),
+				new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(OCObjects.FLOWERING_OAK_LEAVES.get()))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(OCObjects.FLOWERING_OAK_LEAVES.get())));
+		createFloweringLeavesBlockWithFlowers(blockModelGenerators, OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get(),
 				new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(OCObjects.FLOWERING_OAK_LEAVES.get()))
 				.put(TextureSlot.LAYER0, TextureMapping.getBlockTexture(OCObjects.FLOWERING_OAK_LEAVES.get()).withSuffix("_flowers")));
 		blockModelGenerators.createPlant(OCObjects.FLOWERING_OAK_SAPLING.get(), OCObjects.POTTED_FLOWERING_OAK_SAPLING.get(), BlockModelGenerators.TintState.NOT_TINTED);
@@ -93,22 +98,22 @@ public class OCModelProvider extends FabricModelProvider {
 	private static final ModelTemplate CARVED_BLOCK_1_4 = new ModelTemplate(
 			Optional.of(ObeseCrops.id("block/1_4_carved_block")),
 			Optional.of("_1_4"),
-			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.INSIDE);
+			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.INSIDE);
 
 	private static final ModelTemplate CARVED_BLOCK_2_4 = new ModelTemplate(
 			Optional.of(ObeseCrops.id("block/2_4_carved_block")),
 			Optional.of("_2_4"),
-			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.INSIDE);
+			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.INSIDE);
 
 	private static final ModelTemplate CARVED_BLOCK_3_4 = new ModelTemplate(
 			Optional.of(ObeseCrops.id("block/3_4_carved_block")),
 			Optional.of("_3_4"),
-			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.INSIDE);
+			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.INSIDE);
 
 	private static final ModelTemplate OBESE_CROP = new ModelTemplate(
 			Optional.of(ObeseCrops.id("block/obese_crop")),
 			Optional.empty(),
-			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.INSIDE);
+			TextureSlot.SIDE, TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.INSIDE);
 
 	private static final ModelTemplate THIN_LOG_CORE = new ModelTemplate(
 			Optional.of(ObeseCrops.id("block/thin_log_core")),
@@ -151,11 +156,11 @@ public class OCModelProvider extends FabricModelProvider {
 			TextureSlot.PLANT);
 
 	private void createObeseModel(BlockModelGenerators blockModelGenerators, Block obeseCrop) {
-		createObeseModel(blockModelGenerators, obeseCrop, false);
+		createObeseModel(blockModelGenerators, obeseCrop, false, false);
 	}
 
-	private void createObeseModel(BlockModelGenerators blockModelGenerators, Block obeseCrop, boolean hasTop) {
-		TextureMapping tm = makeObeseMap(obeseCrop, hasTop);
+	private void createObeseModel(BlockModelGenerators blockModelGenerators, Block obeseCrop, boolean hasTop, boolean hasBottom) {
+		TextureMapping tm = makeObeseMap(obeseCrop, hasTop, hasBottom);
 		ResourceLocation id_1_4 = CARVED_BLOCK_1_4.create(obeseCrop, tm, blockModelGenerators.modelOutput);
 		ResourceLocation id_2_4 = CARVED_BLOCK_2_4.create(obeseCrop, tm, blockModelGenerators.modelOutput);
 		ResourceLocation id_3_4 = CARVED_BLOCK_3_4.create(obeseCrop, tm, blockModelGenerators.modelOutput);
@@ -204,14 +209,17 @@ public class OCModelProvider extends FabricModelProvider {
 	}
 
 	private void createFloweringLeavesBlock(BlockModelGenerators blockModelGenerators, Block floweringLeaves, TextureMapping tm) {
-		ResourceLocation modelFlowers = FLOWERING_LEAVES.createWithSuffix(floweringLeaves, "_flowers", tm, blockModelGenerators.modelOutput);
-		ResourceLocation modelNoFlowers = ModelTemplates.LEAVES.create(floweringLeaves, new TextureMapping()
-				.put(TextureSlot.ALL, TextureMapping.getBlockTexture(floweringLeaves))
-				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(floweringLeaves)), blockModelGenerators.modelOutput);
+		ResourceLocation modelNoFlowers = ModelTemplates.LEAVES.create(floweringLeaves, tm, blockModelGenerators.modelOutput);
 		blockModelGenerators.blockStateOutput
 				.accept(MultiVariantGenerator.multiVariant(floweringLeaves,
-						Variant.variant().with(VariantProperties.MODEL, modelNoFlowers).with(VariantProperties.WEIGHT, 2),
-						Variant.variant().with(VariantProperties.MODEL, modelFlowers)));
+						Variant.variant().with(VariantProperties.MODEL, modelNoFlowers).with(VariantProperties.WEIGHT, 2)));
+		blockModelGenerators.delegateItemModel(floweringLeaves, modelNoFlowers);
+	}
+
+	private void createFloweringLeavesBlockWithFlowers(BlockModelGenerators blockModelGenerators, Block floweringLeaves, TextureMapping tm) {
+		ResourceLocation modelFlowers = FLOWERING_LEAVES.createWithSuffix(floweringLeaves, "_flowers", tm, blockModelGenerators.modelOutput);
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(floweringLeaves, Variant.variant().with(VariantProperties.MODEL, modelFlowers)));
 		blockModelGenerators.delegateItemModel(floweringLeaves, modelFlowers);
 	}
 
@@ -229,9 +237,10 @@ public class OCModelProvider extends FabricModelProvider {
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(fruit).with(propertyDispatch));
 	}
 
-	private TextureMapping makeObeseMap(Block block, boolean hasTop) {
+	private TextureMapping makeObeseMap(Block block, boolean hasTop, boolean hasBottom) {
 		return new TextureMapping().put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block))
 				.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, hasTop ? "_top" : ""))
+				.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, hasBottom ? "_bottom" : ""))
 				.put(TextureSlot.INSIDE, TextureMapping.getBlockTexture(block, "_inside"));
 	}
 

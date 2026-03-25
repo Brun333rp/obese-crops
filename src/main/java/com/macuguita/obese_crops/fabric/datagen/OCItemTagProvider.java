@@ -61,7 +61,8 @@ public class OCItemTagProvider extends FabricTagProvider.ItemTagProvider {
 		//?}
 
 		getOrCreateRawBuilder(OCItemTags.FLOWERING_LEAVES)
-				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId());
+				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId())
+				.addElement(OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.getId());
 		getOrCreateRawBuilder(OCItemTags.FLOWERING_OAK_LOGS)
 				.addElement(OCObjects.FLOWERING_OAK_LOG.getId())
 				.addElement(OCObjects.STRIPPED_FLOWERING_OAK_LOG.getId());

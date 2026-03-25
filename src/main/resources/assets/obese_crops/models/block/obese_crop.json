@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "#side",
+    "down": "#bottom",
     "east": "#side",
     "north": "#side",
     "particle": "#side",

@@ -89,7 +89,8 @@ public class OCBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addElement(getRes(Blocks.HANGING_ROOTS));
 
 		getOrCreateRawBuilder(OCBlockTags.FLOWERING_LEAVES)
-				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId());
+				.addElement(OCObjects.FLOWERING_OAK_LEAVES.getId())
+				.addElement(OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.getId());
 		getOrCreateRawBuilder(OCBlockTags.FLOWERING_OAK_LOGS)
 				.addElement(OCObjects.FLOWERING_OAK_LOG.getId())
 				.addElement(OCObjects.STRIPPED_FLOWERING_OAK_LOG.getId());

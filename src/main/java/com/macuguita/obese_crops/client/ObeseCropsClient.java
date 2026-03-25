@@ -51,24 +51,29 @@ public final class ObeseCropsClient {
             //TODO: Custom renderer for diff skins
         }
 
+        Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_APPLE_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_BEETROOT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_CARROT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_POTATO_FOLIAGE.get());
+        Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_GOLDEN_APPLE_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.OBESE_GOLDEN_CARROT_FOLIAGE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.APPLE.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.FLOWERING_OAK_LEAVES.get());
+        Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get());
         Platform.INSTANCE.registerRenderType(RenderType.cutout(), OCObjects.FLOWERING_OAK_SAPLING.get());
 
         Platform.INSTANCE.registerBlockColors((state, view, pos, tintIndex) ->
                         view != null && pos != null
                                 ? BiomeColors.getAverageFoliageColor(view, pos)
                                 : FoliageColor.getDefaultColor(),
-                OCObjects.FLOWERING_OAK_LEAVES.get());
+                OCObjects.FLOWERING_OAK_LEAVES.get(),
+				OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get());
 
         Platform.INSTANCE.registerItemColors((itemStack, i) -> {
                     BlockState blockState = ((BlockItem) itemStack.getItem()).getBlock().defaultBlockState();
                     return Minecraft.getInstance().getBlockColors().getColor(blockState, null, null, i);
                 },
-                OCObjects.FLOWERING_OAK_LEAVES.get());
+                OCObjects.FLOWERING_OAK_LEAVES.get(),
+				OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get());
     }
 }

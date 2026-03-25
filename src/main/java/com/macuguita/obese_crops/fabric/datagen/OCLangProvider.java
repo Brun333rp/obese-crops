@@ -81,6 +81,7 @@ public class OCLangProvider extends FabricLanguageProvider {
 		generateBlockTranslations(translationBuilder, OCObjects.FLOWERING_OAK_LOG.get());
 		generateBlockTranslations(translationBuilder, OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());
 		generateBlockTranslations(translationBuilder, OCObjects.FLOWERING_OAK_LEAVES.get());
+		generateBlockTranslations(translationBuilder, OCObjects.FLOWERING_OAK_LEAVES_WITH_FLOWERS.get());
 		generateBlockTranslations(translationBuilder, OCObjects.FLOWERING_OAK_SAPLING.get());
 		generateBlockTranslations(translationBuilder, OCObjects.POTTED_FLOWERING_OAK_SAPLING.get());
 

@@ -78,7 +78,7 @@ public class OCBlockLootTableProvider extends FabricBlockLootTableProvider {
 
 		dropSelf(OCObjects.FLOWERING_OAK_LOG.get());
 		dropSelf(OCObjects.STRIPPED_FLOWERING_OAK_LOG.get());
-		createOakLeavesDrops(OCObjects.FLOWERING_OAK_LEAVES.get(), OCObjects.FLOWERING_OAK_SAPLING.get(), BlockLootSubProviderAccessor.obese_crops$getNormalLeavesSaplingChances());
+		add(OCObjects.FLOWERING_OAK_LEAVES.get(), block -> createOakLeavesDrops(block, OCObjects.FLOWERING_OAK_SAPLING.get(), BlockLootSubProviderAccessor.obese_crops$getNormalLeavesSaplingChances()));
 		dropSelf(OCObjects.FLOWERING_OAK_SAPLING.get());
 		dropPottedContents(OCObjects.POTTED_FLOWERING_OAK_SAPLING.get());
 		add(OCObjects.APPLE.get(), this::createOakLeavesDrops);
