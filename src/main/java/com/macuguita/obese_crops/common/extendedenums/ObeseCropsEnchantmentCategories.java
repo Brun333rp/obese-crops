@@ -35,10 +35,9 @@ public final class ObeseCropsEnchantmentCategories {
 
 	public static final EnchantmentCategory SCYTHES =
 			//? fabric {
-			EnchantmentCategory.valueOf("OBESE_CROPS_SCYTHE");
+			EnchantmentCategory.OBESE_CROPS_SCYTHE;
 			//?} else forge || neoforge {
 			/^EnchantmentCategory.create("OBESE_CROPS_SCYTHE", (item) -> item instanceof ScytheItem);
 			^///?}
-
 }
 *///?}

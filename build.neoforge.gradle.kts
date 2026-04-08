@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.accessTransformers
-import org.gradle.kotlin.dsl.from
-
 plugins {
     id("net.neoforged.moddev")
     id ("dev.kikugie.postprocess.jsonlang")
@@ -15,17 +12,13 @@ tasks.named<ProcessResources>("processResources") {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
         this["atFile"] = "META-INF/accesstransformer+" + prop("deps.minecraft") + ".cfg"
-        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
+        this["extraMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21") && stonecutter.eval(stonecutter.current.version, "fabric"))
             ""
         else
-            ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
-        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
-            ""
-        else
-            ", \"obese_crops.fabric.mixins.json\""
+            ", \"EnchantmentCategoryMixin\""
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
+    filesMatching(listOf("fabric.mod.json", "obese_crops.mixins.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
         expand(props)
     }
 

@@ -1,3 +1,1 @@
-- Updated textures
-- Fixed the loot table of flowering oak leaves not working
-- The flowering leaves block is now split into 2
+- Dropped dependency on fabric asm

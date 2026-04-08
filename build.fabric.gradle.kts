@@ -17,17 +17,13 @@ tasks.named<ProcessResources>("processResources") {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_fabric")
         this["ctFile"] = prop("mod.id") + "+" + prop("deps.minecraft") + ".classtweaker"
-        this["extraFabricEntrypoints"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
-                ""
-            else
-                ", \"mm:early_risers\": [\"com.macuguita.obese_crops.fabric.ObeseCropsASM\"]"
-        this["extraFabricMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21"))
-                ""
-            else
-                ", \"obese_crops.fabric.mixins.json\""
+        this["extraMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21") && stonecutter.eval(stonecutter.current.version, "fabric"))
+            ""
+        else
+            ", \"EnchantmentCategoryMixin\""
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
+    filesMatching(listOf("fabric.mod.json", "obese_crops.mixins.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
         expand(props)
     }
 
@@ -65,7 +61,6 @@ repositories {
         Triple("Wisp Forest Maven", "https://maven.wispforest.io/releases/", listOf("io.wispforest")),
         Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
         Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
-        Triple("Jitpack", "https://jitpack.io", emptyList()),
     )
 
     exclusiveRepos.forEach { (name, url, groups) ->
@@ -113,13 +108,6 @@ dependencies {
 
         implementation("folk.sisby:kaleido-config:${property("deps.kaleido")}")
         include("folk.sisby:kaleido-config:${property("deps.kaleido")}")
-
-        if (hasProperty("deps.fabric_asm")) {
-            modImplementation("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}") {
-                exclude(group = "net.fabricmc.fabric-api")
-            }
-            include("com.github.Chocohead:Fabric-ASM:${property("deps.fabric_asm")}")
-        }
     }
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("maven.modrinth:mcqoy:${property("deps.mcqoy")}")

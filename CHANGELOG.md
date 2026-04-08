@@ -1,3 +1,5 @@
+1.0.7
+- Dropped dependency on fabric asm
 1.0.6
 - Updated textures
 - Fixed the loot table of flowering oak leaves not working

@@ -23,14 +23,13 @@
     "fabric-datagen": [
       "com.macuguita.obese_crops.fabric.datagen.FabricDatagenEntrypoint"
     ]
-    ${extraFabricEntrypoints}
   },
   "mixins": [
     "obese_crops.mixins.json"
-    ${extraFabricMixins}
   ],
   "depends": {
     "fabric-api": "*",
-    "macu_lib": "*"
+    "macu_lib": "*",
+    "fabricloader": ">=0.19.0"
   }
 }

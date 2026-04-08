@@ -20,29 +20,27 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.macuguita.obese_crops.fabric;
+package com.macuguita.obese_crops.mixin;
 
 //? < 1.21 && fabric {
+/*import com.macuguita.obese_crops.common.item.ScytheItem;
+import org.spongepowered.asm.mixin.Mixin;
 
-/*import com.chocohead.mm.api.ClassTinkerers;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.MappingResolver;
+import org.spongepowered.asm.mixin.Shadow;
 
-public final class ObeseCropsASM implements Runnable {
+@Mixin(EnchantmentCategory.class)
+public enum EnchantmentCategoryMixin {
+	OBESE_CROPS_SCYTHE {
+		@Override
+		public boolean canEnchant(Item item) {
+			return item instanceof ScytheItem;
+		}
+	};
 
-	public static final String ENCHANTMENT_CATEGORY_SCYTHE = "OBESE_CROPS_SCYTHE";
-
-	@Override
-	public void run() {
-		MappingResolver remapper = FabricLoader.getInstance().getMappingResolver();
-		String enchantmentCategoryTarget = remapper.mapClassName("intermediary", "net.minecraft.class_1886");
-
-		ClassTinkerers.addTransformation(enchantmentCategoryTarget, (classNode -> {
-			classNode.permittedSubclasses = null;
-		}));
-		ClassTinkerers.enumBuilder(enchantmentCategoryTarget).addEnumSubclass(ENCHANTMENT_CATEGORY_SCYTHE, "com.macuguita.obese_crops.fabric.ScytheEnchantmentCategory").build();
-	}
-
+	@Shadow
+	public abstract boolean canEnchant(Item item);
 }
 *///?}

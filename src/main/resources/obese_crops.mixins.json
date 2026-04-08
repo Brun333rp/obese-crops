@@ -17,6 +17,7 @@
     "HoeItemAccessor",
     "IngredientAccessor",
     "PlayerMixin"
+    ${extraMixins}
   ],
   "client": [
     "client.GuiGraphicsMixin",
