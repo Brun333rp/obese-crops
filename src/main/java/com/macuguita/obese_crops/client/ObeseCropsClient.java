@@ -46,6 +46,8 @@ public final class ObeseCropsClient {
     public static void init() {
         for (GuitaRegistryEntry<Item> scythe : OCObjects.SCYTHE_ITEMS.getEntries()) {
             for (ItemDisplayContext displayMode : ItemDisplayContext.values()) {
+				//? forge || neoforge
+				//if (displayMode.isModded()) continue;
                 ItemProperties.register(scythe.get(), ObeseCrops.id(displayMode.getSerializedName()), (itemStack, clientLevel, livingEntity, i) -> mode == displayMode ? 1.0F : 0.0F);
             }
             //TODO: Custom renderer for diff skins

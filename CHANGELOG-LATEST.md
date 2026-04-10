@@ -1,1 +1,1 @@
-- fix [#8](https://github.com/macuguita/obese-crops/issues/8) and [#9](https://github.com/macuguita/obese-crops/issues/9)
+- fix [#10](https://github.com/macuguita/obese-crops/issues/10)

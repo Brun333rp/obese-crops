@@ -1,3 +1,6 @@
+1.0.9
+- fix [#10](https://github.com/macuguita/obese-crops/issues/10)
+---
 1.0.8
 - fix [#8](https://github.com/macuguita/obese-crops/issues/8) and [#9](https://github.com/macuguita/obese-crops/issues/9)
 ---
