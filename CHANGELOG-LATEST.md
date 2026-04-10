@@ -1,1 +1,1 @@
-- Dropped dependency on fabric asm
+- fix [#8](https://github.com/macuguita/obese-crops/issues/8) and [#9](https://github.com/macuguita/obese-crops/issues/9)

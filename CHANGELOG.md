@@ -1,5 +1,9 @@
+1.0.8
+- fix [#8](https://github.com/macuguita/obese-crops/issues/8) and [#9](https://github.com/macuguita/obese-crops/issues/9)
+---
 1.0.7
 - Dropped dependency on fabric asm
+---
 1.0.6
 - Updated textures
 - Fixed the loot table of flowering oak leaves not working

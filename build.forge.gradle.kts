@@ -12,7 +12,7 @@ tasks.named<ProcessResources>("processResources") {
         this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
         this["minecraft"] = prop("mod.mc_dep_forgelike")
         this["atFile"] = "META-INF/accesstransformer+" + prop("deps.minecraft") + ".cfg"
-        this["extraMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21") && stonecutter.eval(stonecutter.current.version, "fabric"))
+        this["extraMixins"] = if (stonecutter.eval(stonecutter.current.version, ">=1.21") && !stonecutter.eval(stonecutter.current.version, "fabric"))
             ""
         else
             ", \"EnchantmentCategoryMixin\""
